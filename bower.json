@@ -1,0 +1,24 @@
+{
+  "name": "pigeonpie",
+  "authors": [
+    "Gui Talarico"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "pigeonpie/static/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "1.6.2",
+    "angular": "1.6.2",
+    "materialize": "^0.98.0"
+  }
+}
