@@ -6,7 +6,6 @@ join = os.path.join
 COMPONENTS = 'components'
 
 scss = Bundle('css/main.scss',
-              'components/materialize/sass/materialize.scss',
               filters='libsass', output='packed/sass.css', depends='**/*.scss')
 
 css_assets = Bundle(scss,
@@ -18,6 +17,8 @@ js_assets = Bundle('components/jquery/dist/jquery.js',
                    'components/angular-route/angular-route.js',
                    'components/materialize/dist/js/materialize.js',
                    'js/main.js',
+                   'js/buckets.js',
+                   'js/routing.js',
                    filters='rjsmin', output='packed/packed.js')
 
 assets = Environment(app)

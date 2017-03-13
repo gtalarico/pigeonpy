@@ -2,5 +2,19 @@
 //  MATERIALIZE +  OVERRIDES
 ///////////////////////////////////////////
 
-// @import '../components/materialize/sass/materialize.scss';
-// @import '../components/materialize/sass/_style.scss';
+@import '../components/materialize/sass/materialize.scss';
+@import '../components/materialize/sass/components/_variables.scss';
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+footer {
+    bottom: 0px !important;
+}
