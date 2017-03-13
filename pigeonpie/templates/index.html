@@ -1,36 +1,99 @@
-{% extends '_base.html' %}
-{% block content %}
-<div class="section no-pad-bot" id="index-banner">
-  <div class="container">
-    <br><br>
-    <h1 class="header center orange-text">Login To Start</h1>
-    <div class="row center">
-      <h5 class="header col s12 light">Ready to go</h5>
-    </div>
-    <div class="row center">
-      <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
-    </div>
-    <br><br>
+<!doctype html>
+<html ng-app="PigeonPieApp">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  </div>
-</div>
+        <meta name="title" content="PigeonPie">
+        <meta name="description" content="PigeonPie">
 
+        <meta name="google-site-verification" content="Dn1KWTK6Dm3XMYL1XHu2FUNgz4YH8bUA0YGoFkoWpi0" />
 
-<div class="container">
-  <div class="section">
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="#28282a">
+        <meta name="theme-color" content="#28282a">
 
-    <!--   Icon Section   -->
-    <div class="row">
-      <div class="col s12 m12">
-        <div class="icon-block">
-          <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
-          <h5 class="center">Speeds up development</h5>
+        <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=no">
+        <meta name="ROBOTS" content="INDEX, FOLLOW">
 
-          <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
+        <!-- <link rel="shorcut icon" href="{{ url_for('static', filename="img/favicon.png") }}"> -->
+
+        <!-- START CSS WEBASSETS -->
+        <!-- <link rel="stylesheet" href="/static/components/materialize/dist/css/materialize.min.css"> -->
+        {% assets "css_assets" %}
+        <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" media="screen,projection"/>
+        {% endassets %}
+        <!--Import Google Icon Font-->
+        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" >
+        <!--Import materialize.css-->
+        <!-- <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700|Roboto+Mono:300"> -->
+    </head>
+
+    <body ng-controller="PigeonPieController">
+        <nav>
+          <div class="nav-wrapper orange darken-3">
+            <a href="#!" class="brand-logo"> PigeonPie</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+
+            <ul class="right hide-on-med-and-down">
+              <li><a href="#!"><i class="material-icons">home</i></a></li>
+              <li><a href="#!/buckets"><i class="material-icons">view_module</i></a></li>
+              <li><a href="#!"><i class="material-icons">info</i></a></li>
+              <li><a href="#!"><i class="material-icons">more_vert</i></a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+              <li><a href="sass.html">Home</a></li>
+              <li><a href="badges.html">Buckets</a></li>
+              <li><a href="collapsible.html">About</a></li>
+            </ul>
+
+          </div>
+        </nav>
+
+        <!-- ANGULAR VIEW -->
+        <div class="section" ng-view>
+            Welcome
         </div>
-      </div>
-    </div>
+        <!-- ANGULAR VIEW -->
 
-  </div>
-</div>
-{% endblock %}
+        <footer class="page-footer orange">
+          <div class="container">
+            <div class="row">
+              <div class="col l6 s12">
+                <h5 class="white-text">Why PigeonPie</h5>
+                <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support and continue development on this project and is greatly appreciated.</p>
+
+
+              </div>
+              <div class="col l3 s12">
+              </div>
+
+              <div class="col l3 s12">
+                <h5 class="white-text">Settings</h5>
+                <ul>
+                  <li><a class="white-text" href="#!">LinkedIn</a></li>
+                  <li><a class="white-text" href="#!">Twitter</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright">
+            <div class="container">
+            <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+            </div>
+          </div>
+        </footer>
+
+        <!-- START JS WEBASSETS -->
+        {% assets "js_assets" %}
+        <script src="{{ ASSET_URL }}"></script>
+        {% endassets %}
+        <!-- END JS WEBASSETS -->
+
+        {# Google Analytics Script #}
+        {# include 'components/__analytics.html' #}
+        <!-- BASE: START CHILD SCRIPT BLOCK -->
+
+    </body>
+</html>

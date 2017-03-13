@@ -15,6 +15,7 @@ css_assets = Bundle(scss,
 
 js_assets = Bundle('components/jquery/dist/jquery.js',
                    'components/angular/angular.js',
+                   'components/angular-route/angular-route.js',
                    'components/materialize/dist/js/materialize.js',
                    'js/main.js',
                    filters='rjsmin', output='packed/packed.js')

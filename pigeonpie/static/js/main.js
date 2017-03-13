@@ -6,7 +6,18 @@ $( document ).ready(function() {
 
   'use strict';
 
-  angular.module('PigeonPieApp', [])
+  // angular.module('PigeonPieApp', ['ngRoute'])
+
+  angular.module('PigeonPieApp',['ngRoute'])
+     .config(['$locationProvider','$routeProvider',
+              function($locationProvider,$routeProvider){
+         $locationProvider.hashPrefix('!');
+         $routeProvider
+         .when('/',{})
+         .when('/buckets',{templateUrl:'/static/partials/buckets.html',
+                           controller: 'PigeonPieController'})
+         .otherwise({redirectTo:'/'});
+     }])
 
   .controller('PigeonPieController', ['$scope', '$log', '$http', '$timeout',
     function($scope, $log, $http, $timeout) {
