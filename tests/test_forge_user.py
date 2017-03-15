@@ -12,13 +12,24 @@ def client():
 
 @pytest.fixture(scope="module")
 def ForgeUser():
-    from pigeonpie.forge import ForgeUSer as ForgeUSer_
+    from pigeonpie.forge import ForgeUser as ForgeUser_
     return ForgeUser_
 
 
-# def test_authentication_init(ForgeApp):
-#     assert ForgeApp.access_token is not None
-#     assert ForgeApp.is_authenticated is True
-#     ForgeApp.deauthorize()
-#     assert ForgeApp.access_token is None
-#     assert ForgeApp.is_authenticated is False
+@pytest.fixture(scope="module")
+def token():
+    import os
+    return os.enviro['TEST_TOKEN']
+    # return os.getenv('TEST_TOKEN', None)
+
+
+@pytest.fixture(scope="module")
+def request_context():
+    return pigeonpie.app.test_request_context('')
+
+
+# def test_hubs(ForgeUser, request_context, token, client):
+#     if token:
+#         with client as c:
+#             with c.session_transaction() as session:
+#                 session['access_token'] = token
