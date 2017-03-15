@@ -17,7 +17,8 @@ js_assets = Bundle('components/jquery/dist/jquery.js',
                    'components/angular-route/angular-route.js',
                    'components/materialize/dist/js/materialize.js',
                    'js/main.js',
-                   'js/buckets.js',
+                   'js/bucketsCtrl.js',
+                   'js/navCtrl.js',
                    'js/routing.js',
                    filters='rjsmin', output='packed/packed.js')
 
