@@ -1,0 +1,30 @@
+<div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">Logo</a>
+
+        {% if not session.user %}
+        <ul class="right hide-on-med-and-down">
+            <li><a href="https://developer.api.autodesk.com/authentication/v1/authorize?response_type=code&client_id={{client_id}}&redirect_uri={{callback|urlencode}}&scope={{scope|urlencode}}&state=%2F">Login</a></li>
+        </ul>
+        {% else %}
+        
+        <ul class="right hide-on-med-and-down">
+            <li><a href="#!/buckets">Buckets</a></li>
+            <li><a href="#!/upload">Upload</a></li>
+
+            <li><a class="dropdown-button" href="#!" data-activates="dropdown1">{{ session.user.firstName }} {{ session.user.lastName }}<i class="material-icons right">arrow_drop_down</i></a></li>
+        </ul>
+        <ul id="dropdown1" class="dropdown-content">
+          <li><a href="/user/logout">Logout</a></li>
+          <li class="divider"></li>
+          <li><a href="#!">Profile</a></li>
+        </ul>
+        {% endif %}
+      </div>
+    </nav>
+</div>
+
+<!-- Dropdown Structure -->
+
+<!-- Dropdown Structure -->

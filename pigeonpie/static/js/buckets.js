@@ -16,6 +16,10 @@
                             $timeout.cancel(timeout);
                         }, function errorCallback(response) {
                             $log.log(response);
+                            if (response.status === 401) {
+                                alert('You are not authenticated')
+                                $timeout.cancel(timeout);
+                            }
                         });
                     timeout = $timeout(bucketListPoller, 2000);
                 }
@@ -26,7 +30,9 @@
                     $http.post('/api/buckets/' + bucketKey)
                         .then(function successCallback(response) {
                             $log.log(response);
-                            getNewBucket(bucketKey)
+                            if (response.status == 200){
+                                getNewBucket(bucketKey)
+                            }
                         }, function errorCallback(response) {
                             $log.log(response);
                         });
