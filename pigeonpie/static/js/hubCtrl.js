@@ -3,7 +3,7 @@
     'use strict';
 
     angular.module('PigeonPieApp')
-        .controller('navController', ['$scope', '$log', '$http', '$timeout', '$window',
+        .controller('hubController', ['$scope', '$log', '$http', '$timeout', '$window',
             function($scope, $log, $http, $timeout, $window) {
 
                     $http.get('/api/hubs')

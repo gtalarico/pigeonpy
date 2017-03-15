@@ -3,7 +3,7 @@
     <br><br>
     <h1 class="header center orange-text">Pigeon Pie</h1>
     <div class="row center">
-      <h5 class="header col s12 light">Comming Soon</h5>
+      <h5 class="header col s12 light">In Development</h5>
     </div>
     <div class="row center">
       <a href="#!/upload" id="download-button" class="btn-large waves-effect waves-light orange">Upload</a>
@@ -18,12 +18,13 @@
   <div class="section">
 
     <!--   Icon Section   -->
-    <div class="row">
-      <div class="col s12 m4">
+    <div class="row"  ng-controller="hubController">
+      <div class="col s12 m4" ng-repeat="hub in hubList">
         <div class="icon-block">
-          <!-- <h2 class="center light-blue-text"><i class="material-icons">info</i></h2> -->
-          <!-- <h5 class="center">In development</h5> -->
-          <!-- <p class="light center">In development</p> -->
+          <h2 class="center orange-text"><i class="medium material-icons">cloud</i></h2>
+          <h5 class="center"><a href="/api/{{hub.id}}/projects">{{ hub.attributes.name }}</a></h5>
+          <!-- <h5 class="center"><a href="#!/api/{{hub.id}}/projects">{{ hub.attributes.name }}</a></h5> -->
+          <p class="light center">{{ hub.attributes.extension.type }}</p>
         </div>
       </div>
     </div>

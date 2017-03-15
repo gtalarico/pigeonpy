@@ -1,5 +1,6 @@
 $( document ).ready(function() {
         $(".button-collapse").sideNav();
+        // Initialize collapse button
 });
 
 // https://github.com/mgonto/restangular

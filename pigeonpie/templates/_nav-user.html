@@ -1,6 +1,7 @@
-<div class="navbar-fixed" ng-controller="navController">
+<div class="navbar-fixed">
     <nav>
       <div class="nav-wrapper">
+
         <a href="#!" class="brand-logo"></a>
 
         {% if not session.user %}
@@ -12,7 +13,7 @@
         <ul class="right hide-on-med-and-down">
             <li><a href="#!/buckets">Buckets</a></li>
             <li><a href="#!/upload">Upload</a></li>
-            <li><a class="dropdown-button" href="#!" data-activates="dropdown-hubs">Autodesk Hubs<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li><a href="#!/hubs">Hubs</a></li>
 
             <li><a class="dropdown-button" href="#!" data-activates="dropdown-user">{{ session.user.firstName }} {{ session.user.lastName }}<i class="material-icons right">arrow_drop_down</i></a></li>
 
@@ -24,14 +25,10 @@
           <li><a href="#!">Profile</a></li>
         </ul>
         <!-- Dropdown USER -->
-        <!-- Dropdown HUBS -->
-        <ul id="dropdown-hubs" class="dropdown-content">
-          {% raw %}<li ng-repeat="hub in hubList"><a href="#!">{{ hub.attributes.extension.type }}</a></li>{% endraw %}
-          <!-- <li class="divider"></li> -->
-          <!-- <li><a href="#!">All</a></li> -->
-        </ul>
-        <!-- Dropdown HUBS -->
         {% endif %}
+
+
+
       </div>
     </nav>
 </div>

@@ -14,6 +14,16 @@ class User(UserResouce):
         return jsonify(session['user'])
 
 
+class ProjectList(UserResouce):
+    url = 'https://developer.api.autodesk.com/project/v1/hubs/{hub_id}/projects'
+
+    def get(self, hub_id):
+        url = ProjectList.url.format(hub_id=hub_id)
+        json_data, response = ForgeUser.request('get', url, headers={'Content-Type':''})
+        code = response.status_code
+        return jsonify(json_data) if code == 200 else abort(code)
+
+
 class HubList(UserResouce):
     url = 'https://developer.api.autodesk.com/project/v1/hubs'
 
@@ -61,3 +71,4 @@ app_api.add_resource(User, '/api/user')
 app_api.add_resource(HubList, '/api/hubs')
 app_api.add_resource(BucketList, '/api/buckets')
 app_api.add_resource(Bucket, '/api/buckets/<string:bucket_key>')
+app_api.add_resource(ProjectList, '/api/<string:hub_id>/projects')
