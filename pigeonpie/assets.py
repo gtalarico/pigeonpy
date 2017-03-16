@@ -14,13 +14,15 @@ css_assets = Bundle(scss,
 
 js_assets = Bundle('components/jquery/dist/jquery.js',
                    'components/angular/angular.js',
+                   'components/angular-ui-router/release/angular-ui-router.js',
                    'components/angular-route/angular-route.js',
                    'components/materialize/dist/js/materialize.js',
                    'js/main.js',
-                   'js/bucketsCtrl.js',
-                   'js/hubCtrl.js',
-                   'js/homeCtrl.js',
+                   'js/home-component.js',
                    'js/routing.js',
+                #    'js/bucketsCtrl.js',
+                #    'js/hubCtrl.js',
+                #    'js/homeCtrl.js',
                    filters='rjsmin', output='packed/packed.js')
 
 assets = Environment(app)

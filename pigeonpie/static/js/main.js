@@ -10,6 +10,7 @@ $( document ).ready(function() {
 (function () {
 
   'use strict';
-  angular.module('PigeonPieApp',['ngRoute'])
+  angular.module('PigeonPieApp',[])
+  // angular.module('PigeonPieApp',['ui.router'])
 
 }());
