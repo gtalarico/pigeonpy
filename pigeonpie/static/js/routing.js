@@ -9,12 +9,13 @@
          $routeProvider
          .when('/buckets',{templateUrl:'/static/partials/buckets.html',
                            controller: 'bucketsController'})
-         .when('/upload',{templateUrl:'/static/partials/upload.html',
-                           controller: 'bucketsController'})
-         .when('/hubs',{templateUrl:'/static/partials/home.html',
+         .when('/upload',{templateUrl:'/static/partials/upload.html'})
+         .when('/hubs',{templateUrl:'/static/partials/hubs.html',
                         controller: 'hubController'})
+         .when('/login',{templateUrl:'/static/partials/login.html'})
          .otherwise({redirectTo:'/',
-                     templateUrl: '/static/partials/home.html'});
+                     templateUrl: '/static/partials/home.html',
+                     controller: 'homeController'})
      }])
 
 }());

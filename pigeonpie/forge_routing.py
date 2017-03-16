@@ -9,9 +9,12 @@ from pigeonpie.forge import ForgeUser, ForgeApp
 from pigeonpie.security import UserResouce, AdminResource
 
 
-class User(UserResouce):
+class User(Resource):
     def get(self):
-        return jsonify(session['user'])
+        user = session.get('user')
+        if user:
+            return jsonify(user)
+        abort(401)
 
 
 class ProjectList(UserResouce):
@@ -19,7 +22,7 @@ class ProjectList(UserResouce):
 
     def get(self, hub_id):
         url = ProjectList.url.format(hub_id=hub_id)
-        json_data, response = ForgeUser.request('get', url, headers={'Content-Type':''})
+        json_data, response = ForgeUser.request('get', url)
         code = response.status_code
         return jsonify(json_data) if code == 200 else abort(code)
 
@@ -29,7 +32,7 @@ class HubList(UserResouce):
 
     def get(self):
         # http://stackoverflow.com/questions/37204077/415-unsupported-media-type-error
-        json_data, response = ForgeUser.request('get', HubList.url, headers={'Content-Type':''})
+        json_data, response = ForgeUser.request('get', HubList.url)
         code = response.status_code
         return jsonify(json_data) if code == 200 else abort(code)
 

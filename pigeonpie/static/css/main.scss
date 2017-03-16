@@ -13,8 +13,37 @@ body {
 
 main {
   flex: 1 0 auto;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fbfbfb+0,efefef+47,e2e2e2+100 */
+  background: #fbfbfb; /* Old browsers */
+  background: -moz-linear-gradient(-45deg, #fbfbfb 0%, #efefef 47%, #e2e2e2 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, #fbfbfb 0%,#efefef 47%,#e2e2e2 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, #fbfbfb 0%,#efefef 47%,#e2e2e2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fbfbfb', endColorstr='#e2e2e2',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 
 footer {
     bottom: 0px !important;
+}
+
+img#logo {
+    display: block;
+    margin: auto;
+    width: 500px;
+    margin-bottom: 75px;
+}
+
+div.card-image {
+    background-color: $brand-grey;
+    // min-width: 300px;
+    min-height: 150px;
+}
+
+span.card-title {
+    font-size: 24px !important;
+    // font-size: $navbar-font-size;
+    // font-weight: 600 !important;
+}
+
+.dropdown-content.active {
+    margin-top: $navbar-height;
 }

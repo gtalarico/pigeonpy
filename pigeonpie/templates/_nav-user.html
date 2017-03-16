@@ -1,15 +1,12 @@
+
 <div class="navbar-fixed">
     <nav>
       <div class="nav-wrapper">
 
         <a href="#!" class="brand-logo"></a>
 
-        {% if not session.user %}
-        <ul class="right hide-on-med-and-down">
-            <li><a href="{{login_url|safe}}">Login</a></li>
-        </ul>
-        {% else %}
 
+        {% if session.user %}
         <ul class="right hide-on-med-and-down">
             <li><a href="#!/buckets">Buckets</a></li>
             <li><a href="#!/upload">Upload</a></li>
@@ -18,13 +15,12 @@
             <li><a class="dropdown-button" href="#!" data-activates="dropdown-user">{{ session.user.firstName }} {{ session.user.lastName }}<i class="material-icons right">arrow_drop_down</i></a></li>
 
         </ul>
-        <!-- Dropdown USER -->
+
         <ul id="dropdown-user" class="dropdown-content">
-          <li><a href="/user/logout">Logout</a></li>
+          <li><a href="/logout">Logout</a></li>
           <li class="divider"></li>
           <li><a href="#!">Profile</a></li>
         </ul>
-        <!-- Dropdown USER -->
         {% endif %}
 
 

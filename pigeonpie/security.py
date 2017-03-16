@@ -5,26 +5,6 @@ from flask_restful import Resource, abort
 from pigeonpie import app, session
 from pigeonpie.forge import ForgeUser
 
-
-#############################
-# AUTHENTICATION END POINTS #
-#############################
-
-@app.route('/api/callback')
-def callback_authentication():
-    """ Authentication endpoint """
-    code = request.args.get('code')
-    target = request.args.get('state', '/')
-    if not ForgeUser.login(code=code):
-        code = 401
-    return redirect(target)
-
-@app.route('/user/logout')
-def logout():
-    """ Authentication endpoint """
-    ForgeUser.logout()
-    return redirect(url_for('index'))
-
 #############################
 # AUTHENTICATION DECORATORS #
 #############################

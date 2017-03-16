@@ -66,7 +66,8 @@ class _ForgeUser(object):
         """ Inject Token and default header """
         access_token = session.get('access_token')
         default_headers = {'Authorization': 'Bearer {}'.format(access_token)}
-        default_headers.update({'Content-Type': 'application/json'})
+        if method != 'get':
+            default_headers.update({'Content-Type': 'application/json'})
         requests_session = requests.Session()
         requests_session.headers.update(default_headers)
         selected_method = getattr(requests_session, method)

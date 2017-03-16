@@ -19,6 +19,7 @@ js_assets = Bundle('components/jquery/dist/jquery.js',
                    'js/main.js',
                    'js/bucketsCtrl.js',
                    'js/hubCtrl.js',
+                   'js/homeCtrl.js',
                    'js/routing.js',
                    filters='rjsmin', output='packed/packed.js')
 

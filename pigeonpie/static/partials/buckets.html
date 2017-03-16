@@ -1,14 +1,16 @@
 <div class="section" ng-controller="bucketsController">
     <div class="container">
 
-        <h2 class="header">Buckets</h2>
-        <div class="row">
+        <div class="row center-align">
+          <h5 class="header col s12 light">Buckets</h5>
+        </div>
 
+        <div class="row">
             <!-- REPEATED CARDS -->
-            <div class="col s12 m6 l6" ng-repeat="bucket in bucketList">
+            <div class="col s12 m4 l4" ng-repeat="bucket in bucketList">
                 <div class="card hoverable">
                     <div class="card-image">
-                        <img src="http://materializecss.com/images/sample-1.jpg">
+                        <!-- <img src="/static/img/placeholder.jpg"> -->
                         <span class="card-title">{{ bucket.bucketKey }}</span>
                         <a class="btn-floating halfway-fab waves-effect waves-light red" ng-click="deleteBucket(bucket.bucketKey)"><i class="material-icons">delete</i></a>
                     </div>
@@ -21,10 +23,10 @@
             <!-- REPEATED CARDS -->
 
             <!-- NEW BUCKET -->
-            <div class="col s12 m6 l6">
+            <div class="col s12 m4 l4">
                 <div class="card hoverable">
                     <div class="card-image">
-                        <img src="http://materializecss.com/images/sample-1.jpg">
+                        <!-- <img src="/static/img/placeholder.jpg"> -->
                         <span class="card-title">Create New</span>
                         <a class="btn-floating halfway-fab waves-effect waves-light red" ng-click="createBucket()"><i class="material-icons">add</i></a>
                     </div>
