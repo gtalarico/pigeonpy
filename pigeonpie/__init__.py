@@ -11,8 +11,9 @@ from pigeonpie import assets
 from pigeonpie import views, forge_routing
 
 app.logger.info('>>> {}'.format(app.config['MODE']))
+app.logger.info('TEST!')
 
 # Add logger
 stream_handler = logging.StreamHandler()
-stream_handler.setLevel(logging.WARNING)
+stream_handler.setLevel(logging.INFO)
 app.logger.addHandler(stream_handler)
