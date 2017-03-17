@@ -40,8 +40,10 @@ class _ForgeUser(object):
                      'code': code}
 
         if refresh_token:
+            # TODO: Save + Use Expiration time instead of trial and error
             app.logger.info('Refreshing Token...')
             url = URL_USER_REFRESH_TOKEN
+            # Replaces Code with RefreshToken
             self.data.pop('code')
             self.data.update({'refresh_token': refresh_token})
 
@@ -52,6 +54,7 @@ class _ForgeUser(object):
             session['refresh_token'] = response.json()['refresh_token']
             session['user'] = self.get_user_profile()
             return True
+
         else:
             app.logger.error('FORGE USER: Authentication failed: {}'.format(response.reason))
             self.logout()

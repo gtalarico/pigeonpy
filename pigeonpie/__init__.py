@@ -17,3 +17,6 @@ app.logger.info('TEST!')
 stream_handler = logging.StreamHandler()
 stream_handler.setLevel(logging.INFO)
 app.logger.addHandler(stream_handler)
+
+# https://flask-socketio.readthedocs.io/en/latest/
+# https://github.com/vinceprignano/chatapp

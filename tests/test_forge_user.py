@@ -3,7 +3,6 @@ import pytest
 import pigeonpie
 
 
-
 @pytest.fixture(scope="module")
 def client():
     pigeonpie.app.config['TESTING'] = True
@@ -28,8 +27,11 @@ def request_context():
     return pigeonpie.app.test_request_context('')
 
 
-# def test_hubs(ForgeUser, request_context, token, client):
-#     if token:
-#         with client as c:
-#             with c.session_transaction() as session:
-#                 session['access_token'] = token
+def test_oauth_redirect(client, ForgeUser):
+    import re
+    import webbrowser
+    url = 'https://developer.api.autodesk.com/authentication/v1/authorize'
+    response = client.get('/login')
+    match = re.search(r'(?:href=")(.+)(?:")', response.get_data(as_text=True))
+    assert bool(match.group()) is True
+    assert 'https://developer.api.autodesk.com/authentication/v1/authorize' in str(match.group())
