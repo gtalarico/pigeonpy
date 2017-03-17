@@ -13,7 +13,6 @@
                                 $log.log(response);
                                 $scope.user = response.data
                             }
-                            $log.log('User Request Failed');
                         }, function errorCallback(response) {
                             if (response.status == 401){
                                 $log.log(response);

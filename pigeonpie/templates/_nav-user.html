@@ -14,12 +14,14 @@
 
             <li><a class="dropdown-button" href="#!" data-activates="dropdown-user">{{ session.user.firstName }} {{ session.user.lastName }}<i class="material-icons right">arrow_drop_down</i></a></li>
 
+
         </ul>
+        <a href="#" data-activates="mobile-demo" class="right button-collapse"><i class="material-icons">menu</i></a>
 
         <ul id="dropdown-user" class="dropdown-content">
           <li><a href="/logout">Logout</a></li>
-          <li class="divider"></li>
-          <li><a href="#!">Profile</a></li>
+          <!-- <li class="divider"></li> -->
+          <!-- <li><a href="#!">Profile</a></li> -->
         </ul>
         {% endif %}
 
@@ -28,3 +30,11 @@
       </div>
     </nav>
 </div>
+
+<ul class="side-nav" id="mobile-demo">
+    <li><a href="#!/buckets"><i class="material-icons">cloud</i> Buckets</a></li>
+    <li><a href="#!/upload"><i class="material-icons">file_upload</i> Upload</a></li>
+    <li><a href="#!/hubs"><i class="material-icons">device_hub</i> Hubs</a></li>
+    <li class="divider"></li>
+    <li><a href="/logout"><i class="material-icons">exit_to_app</i> Logout</a></li>
+</ul>

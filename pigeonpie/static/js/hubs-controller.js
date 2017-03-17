@@ -3,9 +3,10 @@
     'use strict';
 
     angular.module('PigeonPieApp')
-        .controller('hubController', ['$scope', '$log', '$http', '$timeout', '$window',
+        .controller('hubListController', ['$scope', '$log', '$http', '$timeout', '$window',
             function($scope, $log, $http, $timeout, $window) {
 
+                    // Loads Hubs
                     $http.get('/api/hubs')
                         .then(function successCallback(response) {
                             $log.log(response);
@@ -17,6 +18,16 @@
                         }, function errorCallback(response) {
                             $log.log(response);
                         });
+
+                    $scope.loadHub = function(hubId) {
+                        $window.location = '#!/hubs/' + hubId + '/projects'
+                    }
+
+
+
+
+
+
             }
 
         ]);

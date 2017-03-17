@@ -6456,14 +6456,18 @@ main {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fbfbfb', endColorstr='#e2e2e2',GradientType=1 );
   /* IE6-9 fallback on horizontal gradient */ }
 
-footer {
-  bottom: 0px !important; }
+footer.page-footer {
+  bottom: 0px !important;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0 10px 0; }
 
 img#logo {
   display: block;
   margin: auto;
   width: 500px;
-  margin-bottom: 75px; }
+  margin-bottom: 50px; }
 
 div.card-image {
   background-color: #5f696f;
@@ -6474,3 +6478,7 @@ span.card-title {
 
 .dropdown-content.active {
   margin-top: 64px; }
+
+.breadcrumb {
+  padding-left: 20px;
+  font-size: 12px; }

@@ -17,6 +17,16 @@ class User(Resource):
         abort(401)
 
 
+class ItemsList(UserResouce):
+    url = 'https://developer.api.autodesk.com/project/v1/hubs/{hub_id}/projects/{project_id}'
+
+    def get(self, hub_id, project_id):
+        url = ItemsList.url.format(hub_id=hub_id, project_id=project_id)
+        json_data, response = ForgeUser.request('get', url)
+        code = response.status_code
+        return jsonify(json_data) if code == 200 else abort(code)
+
+
 class ProjectList(UserResouce):
     url = 'https://developer.api.autodesk.com/project/v1/hubs/{hub_id}/projects'
 
@@ -74,4 +84,5 @@ app_api.add_resource(User, '/api/user')
 app_api.add_resource(HubList, '/api/hubs')
 app_api.add_resource(BucketList, '/api/buckets')
 app_api.add_resource(Bucket, '/api/buckets/<string:bucket_key>')
-app_api.add_resource(ProjectList, '/api/<string:hub_id>/projects')
+app_api.add_resource(ProjectList, '/api/hubs/<string:hub_id>/projects')
+app_api.add_resource(ItemsList, '/api/hubs/<string:hub_id>/projects/<string:project_id>')
