@@ -16,9 +16,9 @@ def require_admin(func):
         user = session.get('user')
         if user and user['lastName'] == 'Talarico' or app.testing is True:
         # if user and user['userId'] == '200809200314193' or app.testing is True:
-            app.logger.info('Admin Resource: User is Authenticated > {}'.format(request.url))
+            app.logger.info('[Admin Resource] User is Authenticated > {}'.format(request.url))
             return func(*args, **kwargs)
-        app.logger.info('Unauthorized.')
+        app.logger.info('[Admin Resource] Unauthorized')
         abort(401)
     return wrapper
 
@@ -27,10 +27,10 @@ def require_user(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         if session.get('access_token') or app.testing is True:
-            app.logger.info('Securer Resource: User is Authenticated > {}'.format(request.url))
+            app.logger.info('[Secure Resource] User is Authenticated > {}'.format(request.url))
             return func(*args, **kwargs)
 
-        app.logger.info('Unauthorized Resource.')
+        app.logger.info('[Secure Resource] Unauthorized Resource.')
         abort(401)
     return wrapper
 

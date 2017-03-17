@@ -17,7 +17,7 @@
                         }, function errorCallback(response) {
                             $log.log(response);
                             if (response.status === 401) {
-                                alert('You are not authenticated')
+                                $log.log('User not Authenticated')
                                 $timeout.cancel(timeout);
                             }
                         });
