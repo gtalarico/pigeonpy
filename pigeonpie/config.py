@@ -9,6 +9,7 @@ class Config(object):
     PRODUCTION = False
     BASEDIR = os.path.abspath(os.path.dirname(__file__))
     TEMPLATEDIR = os.path.join(BASEDIR, 'templates')
+    STATICDIR = os.path.join(BASEDIR, 'static')
     SECRET_KEY = os.environ['SECRET_KEY']
 
     ASSETS_DEBUG = True if os.getenv('ASSETS_DEBUG') == '1' else False

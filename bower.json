@@ -19,6 +19,10 @@
   "dependencies": {
     "angular-route": "1.6.2",
     "angular": "1.6.2",
-    "materialize": "^0.98.0"
+    "materialize": "^0.98.0",
+    "angular-ui-router": "1.0.0-rc.1"
+  },
+  "resolutions": {
+    "angular-ui-router": "1.0.0-rc.1"
   }
 }
