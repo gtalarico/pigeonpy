@@ -33,7 +33,9 @@ footer.page-footer {
 img#logo {
     display: block;
     margin: auto;
-    width: 500px;
+    min-width: 200px;
+    max-width: 500px;
+    width: 400px;
     margin-bottom: 50px;
 }
 
