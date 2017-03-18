@@ -7,6 +7,13 @@ $( document ).ready(function() {
 (function () {
     var myApp = angular.module('PigeonPieApp', ['ui.router']);
 
+    myApp.service('$forgeService', function () {
+      this.getData = function () {
+          return 'Sup!'
+          console.log('hello');
+      };
+    });
+
     myApp.config(function($stateProvider) {
       var hubState = {
         name: 'hubList',

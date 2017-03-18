@@ -16,8 +16,8 @@ js_assets = Bundle('components/jquery/dist/jquery.js',
                    'components/angular/angular.js',
                    'components/angular-ui-router/release/angular-ui-router.js',
                    'components/materialize/dist/js/materialize.js',
+                #    'js/forge.services.js',
                    'js/main.js',
-                   'js/forge.services.js',
                    *components,
                    filters='rjsmin', output='packed/packed.js')
 

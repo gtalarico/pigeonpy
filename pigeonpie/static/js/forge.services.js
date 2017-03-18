@@ -1,8 +1,8 @@
 (function () {
 
-    var myApp = angular.module('PigeonPieApp');
+    angular.module('PigeonPieApp',[])
 
-    myApp.factory('$forgeService', ['$http'], function($http) {
+    .factory('$forgeService', ['$http'], function($http) {
 
         var responseData;
         getHttp()
