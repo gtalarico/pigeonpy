@@ -47,11 +47,17 @@
         </nav> -->
 
         <!-- ANGULAR VIEW -->
-        <main class="section">
-            <a ui-sref="hello" ui-sref-active="active">Hello</a>
-            <a ui-sref="about" ui-sref-active="active">About</a>
-            <ui-view></ui-view>
-        </main>
+        <div class="row">
+            <section id="sidebar" class="col s12 m4 l3"> <!-- Note that "m4 l3" was added -->
+                <a ui-sref="hubList" ui-sref-active="active">Hubs</a>
+                <a ui-sref="bucketList" ui-sref-active="active">Buckets</a>
+                <!-- <a ui-sref="about" ui-sref-active="active">Buckets</a> -->
+            </section>
+
+            <section id="main" class="col s12 m8 l9"> <!-- Note that "m8 l9" was added -->
+                <ui-view></ui-view>
+            </section>
+        </div>
         <!-- ANGULAR VIEW -->
 
         <footer class="page-footer">

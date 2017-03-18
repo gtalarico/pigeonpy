@@ -7,11 +7,12 @@ app = Flask(__name__)
 app_api = Api(app)
 
 from pigeonpie import config
+app.logger.info('>>> {}'.format(app.config['MODE']))
+
+
 from pigeonpie import assets
 from pigeonpie import views, forge_routing
 
-app.logger.info('>>> {}'.format(app.config['MODE']))
-app.logger.info('TEST!')
 
 # Add logger
 stream_handler = logging.StreamHandler()

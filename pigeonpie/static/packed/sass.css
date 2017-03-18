@@ -6438,12 +6438,11 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
     margin-bottom: 5em; } }
 
 body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column; }
+  min-height: 100vh; }
 
-main {
+section#main {
   flex: 1 0 auto;
+  min-height: 100vh;
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fbfbfb+0,efefef+47,e2e2e2+100 */
   background: #fbfbfb;
   /* Old browsers */

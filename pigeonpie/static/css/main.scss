@@ -6,13 +6,14 @@
 @import '../components/materialize/sass/components/_variables.scss';
 
 body {
-  display: flex;
   min-height: 100vh;
-  flex-direction: column;
 }
 
-main {
+
+section#main {
   flex: 1 0 auto;
+  min-height: 100vh;
+  
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fbfbfb+0,efefef+47,e2e2e2+100 */
   background: #fbfbfb; /* Old browsers */
   background: -moz-linear-gradient(-45deg, #fbfbfb 0%, #efefef 47%, #e2e2e2 100%); /* FF3.6-15 */
@@ -41,7 +42,6 @@ img#logo {
 
 div.card-image {
     background-color: $brand-grey;
-    // min-width: 300px;
     min-height: 150px;
 }
 

@@ -1,21 +1,30 @@
-var myApp = angular.module('PigeonPieApp', ['ui.router']);
-
-myApp.config(function($stateProvider) {
-  var helloState = {
-    name: 'hello',
-    url: '/hello',
-    component: 'hubList'
-  }
-
-  var aboutState = {
-    name: 'about',
-    url: '/about',
-    template: '<h3>Its the UI-Router hello world app!</h3>'
-  }
-
-  $stateProvider.state(helloState);
-  $stateProvider.state(aboutState);
+$( document ).ready(function() {
+        $(".button-collapse").sideNav();
+        // Initialize collapse button
 });
+
+
+(function () {
+    var myApp = angular.module('PigeonPieApp', ['ui.router']);
+
+    myApp.config(function($stateProvider) {
+      var hubState = {
+        name: 'hubList',
+        url: '/hubs',
+        component: 'hubList'
+      }
+
+      var bucketsState = {
+        name: 'bucketList',
+        url: '/buckets',
+        component: 'bucketList'
+      }
+
+      $stateProvider.state(hubState);
+      $stateProvider.state(bucketsState);
+    });
+
+}());
 
 // $( document ).ready(function() {
 //         $(".button-collapse").sideNav();
