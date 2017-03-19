@@ -1,0 +1,32 @@
+// Mixins
+
+$desktop-width:992px;
+// $desktop-large-width: 1024px;
+
+@mixin mobile {
+  @media (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+  // @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+// @mixin large-desktop {
+//   @media (min-width: #{$desktop-large-width}) {
+//     @content;
+//   }
+// }
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}

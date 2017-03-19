@@ -21,35 +21,43 @@
         <link rel="shortcut icon" href="/static/img/favicon.png" type="image/x-icon">
         <link rel="icon" href="/static/img/favicon.png" type="image/x-icon">
 
-        <!-- START CSS WEBASSETS -->
-        <!-- <link rel="stylesheet" href="/static/components/materialize/dist/css/materialize.min.css"> -->
         {% assets "css_assets" %}
         <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" media="screen,projection"/>
         {% endassets %}
         <!--Import Google Icon Font-->
         <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" >
-        <!--Import materialize.css-->
-        <!-- <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,600,700|Roboto+Mono:300"> -->
+
+        <script>
+        var flaskSession = { user: {{session.get('user')|tojson}} };
+        </script>
+
     </head>
 
-    <body ng-app="PigeonPieApp">
+    <body ng-app="PigeonPieApp" ng-cloak>
 
         {% include '_nav-user.html' with context %}
 
-        <!-- <nav>
-          <div class="nav-wrapper">
-            <div class="col s12">
-              <a href="#!" class="breadcrumb">First</a>
-              <a href="#!" class="breadcrumb">Second</a>
-              <a href="#!" class="breadcrumb">Third</a>
-            </div>
-          </div>
-        </nav> -->
+        <!-- ANGULAR VIEW -->
+        <div class="row" ng-controller="mainController">
+            {% raw %}
+            <ul id="slide-out" class="side-nav fixed">
+              <li><a href="#!/buckets"><i class="material-icons">cloud</i>Buckets</a></li>
+              <li><a ng-click="loadHubs()" href=""><i class="material-icons">device_hub</i>Hubs</a></li>
 
-        <!-- ANGULAR VIEW -->
-        <main class="section" ng-view>
-        </main>
-        <!-- ANGULAR VIEW -->
+                    <li ng-if="hubList" ng-repeat="hub in hubList">
+                        <a ng-click="loadProjects(hub.id)"  class="level-2" href=""><i class="material-icons">folder_open</i>{{ hub.attributes.name }} </a>
+                        <ul>
+                            <li ng-repeat="project in projectList[hub.id]" class="level-3">
+                                <a ng-click="loadProject(project.id)"  class="level-3" href=""><i class="material-icons">business</i>{{ project.attributes.name }}</a>
+                            </li>
+                        </ul>
+                    <li/>
+            </ul>
+
+            <main ng-view>
+            </main>
+            {% endraw %}
+        </div>
 
         <footer class="page-footer">
             <span class="teal-text text-lighten-4">Gui Talarico</span>

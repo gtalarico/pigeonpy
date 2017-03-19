@@ -1,0 +1,134 @@
+///////////////////////////////////////////
+//  MATERIALIZE +  OVERRIDES
+///////////////////////////////////////////
+
+@import '_mixins.scss';
+@import '_variables-override.scss';
+@import '../components/materialize/sass/materialize.scss';
+
+// body {
+//   display: flex;
+//   min-height: 100vh;
+//   flex-direction: column;
+// }
+
+// main {
+//   flex: 1 0 auto;
+//   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fbfbfb+0,efefef+47,e2e2e2+100 */
+//   background: #fbfbfb; /* Old browsers */
+//   background: -moz-linear-gradient(-45deg, #fbfbfb 0%, #efefef 47%, #e2e2e2 100%); /* FF3.6-15 */
+//   background: -webkit-linear-gradient(-45deg, #fbfbfb 0%,#efefef 47%,#e2e2e2 100%); /* Chrome10-25,Safari5.1-6 */
+//   background: linear-gradient(135deg, #fbfbfb 0%,#efefef 47%,#e2e2e2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+//   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fbfbfb', endColorstr='#e2e2e2',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+// }
+
+.side-nav.fixed{
+    background-color: $brand-grey-light;
+    min-height: 100vh;
+    padding-top: $navbar-height;
+    padding-bottom: $footer-height;
+    z-index: 2;
+}
+
+#sidenav-overlay {
+    z-index: 1;
+}
+
+main {
+    padding-left: 300px;
+    @include mobile {
+        padding-left: 0;
+    }
+}
+
+footer.page-footer {
+    bottom: 0px !important;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    height: $footer-height;
+    z-index: 3;
+
+}
+
+#slide-out a {
+    background-clip: padding-box;
+    padding-left: 12px;
+    font-size: 85%;
+    &.level-2 { padding-left: 20px; }
+    &.level-3 { padding-left: 28px; }
+    &.level-4 { padding-left: 36px; }
+    i {
+        margin-right: 20px;
+    }
+}
+
+a.brand-logo {
+    @include transition(all 0.75s ease-in-out);
+    margin-left: 15px;
+    @include mobile {
+        @include transition(all 0.75s ease-in-out);
+        margin:auto;
+    }
+}
+img#nav-logo {
+    height: 70%;
+    vertical-align: middle;
+}
+
+img#logo {
+    display: block;
+    margin: auto;
+    margin-bottom: 50px;
+    min-width: 500px;
+    @include transition(all 0.75s ease-in-out);
+    @include mobile {
+         max-width: 300px;
+     }
+}
+
+div.card-image {
+    background-color: $brand-grey;
+    // min-width: 300px;
+    min-height: 150px;
+}
+
+span.card-title {
+    font-size: 24px !important;
+    // font-size: $navbar-font-size;
+    // font-weight: 600 !important;
+}
+
+.dropdown-content.active {
+    margin-top: $navbar-height;
+}
+
+.breadcrumb {
+    padding-left: 20px;
+    font-size: 12px;
+}
+
+#loading-bar-spinner .spinner-icon {
+  display: none;
+  border-top-color:  #0ff !important;
+  border-left-color: #0ff !important;
+}
+
+#loading-bar .bar {
+  background: $secondary-color;
+  }
+
+
+.ng-enter {
+  -webkit-transition: 1s;
+  transition: 1s;
+  opacity: 0;
+}
+.ng-enter-active {
+  opacity: 1;
+}
+// https://github.com/angular/angular.js/issues/10156#issuecomment-161275973
+.ng-hide-add {
+  transition: all 0s ease;
+  opacity: 0;
+}

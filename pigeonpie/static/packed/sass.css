@@ -1,4 +1,3 @@
-
 .materialize-red {
   background-color: #e51c23 !important; }
 
@@ -6438,39 +6437,76 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   .picker--time .picker__box {
     margin-bottom: 5em; } }
 
-body {
-  display: flex;
+.side-nav.fixed {
+  background-color: #f8f8f9;
   min-height: 100vh;
-  flex-direction: column; }
+  padding-top: 64px;
+  padding-bottom: 45px;
+  z-index: 2; }
+
+#sidenav-overlay {
+  z-index: 1; }
 
 main {
-  flex: 1 0 auto;
-  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fbfbfb+0,efefef+47,e2e2e2+100 */
-  background: #fbfbfb;
-  /* Old browsers */
-  background: -moz-linear-gradient(-45deg, #fbfbfb 0%, #efefef 47%, #e2e2e2 100%);
-  /* FF3.6-15 */
-  background: -webkit-linear-gradient(-45deg, #fbfbfb 0%, #efefef 47%, #e2e2e2 100%);
-  /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(135deg, #fbfbfb 0%, #efefef 47%, #e2e2e2 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fbfbfb', endColorstr='#e2e2e2',GradientType=1 );
-  /* IE6-9 fallback on horizontal gradient */ }
+  padding-left: 300px; }
+  @media (max-width: 991px) {
+    main {
+      padding-left: 0; } }
 
 footer.page-footer {
   bottom: 0px !important;
   position: absolute;
   width: 100%;
   text-align: center;
-  padding: 10px 0 10px 0; }
+  height: 45px;
+  z-index: 3; }
+
+#slide-out a {
+  background-clip: padding-box;
+  padding-left: 12px;
+  font-size: 85%; }
+  #slide-out a.level-2 {
+    padding-left: 20px; }
+  #slide-out a.level-3 {
+    padding-left: 28px; }
+  #slide-out a.level-4 {
+    padding-left: 36px; }
+  #slide-out a i {
+    margin-right: 20px; }
+
+a.brand-logo {
+  -webkit-transition: all 0.75s ease-in-out;
+  -moz-transition: all 0.75s ease-in-out;
+  -ms-transition: all 0.75s ease-in-out;
+  -o-transition: all 0.75s ease-in-out;
+  transition: all 0.75s ease-in-out;
+  margin-left: 15px; }
+  @media (max-width: 991px) {
+    a.brand-logo {
+      -webkit-transition: all 0.75s ease-in-out;
+      -moz-transition: all 0.75s ease-in-out;
+      -ms-transition: all 0.75s ease-in-out;
+      -o-transition: all 0.75s ease-in-out;
+      transition: all 0.75s ease-in-out;
+      margin: auto; } }
+
+img#nav-logo {
+  height: 70%;
+  vertical-align: middle; }
 
 img#logo {
   display: block;
   margin: auto;
-  min-width: 200px;
-  max-width: 500px;
-  width: 400px;
-  margin-bottom: 50px; }
+  margin-bottom: 50px;
+  min-width: 500px;
+  -webkit-transition: all 0.75s ease-in-out;
+  -moz-transition: all 0.75s ease-in-out;
+  -ms-transition: all 0.75s ease-in-out;
+  -o-transition: all 0.75s ease-in-out;
+  transition: all 0.75s ease-in-out; }
+  @media (max-width: 991px) {
+    img#logo {
+      max-width: 300px; } }
 
 div.card-image {
   background-color: #5f696f;

@@ -1,11 +1,9 @@
-<div class="container">
-  <div class="section">
-
+<div class="section" ng-controller="hubController">
     <div class="row center-align">
       <h5 class="header col s12 light">Projects</h5>
     </div>
 
-    <div class="row"  ng-controller="hubController">
+    <div class="row">
       <div class="col s12 m4" ng-repeat="project in projectList">
         <div class="icon-block">
           <h2 class="center orange-text"><i class="medium material-icons">cloud</i></h2>
@@ -14,6 +12,4 @@
         </div>
       </div>
     </div>
-
-  </div>
 </div>
