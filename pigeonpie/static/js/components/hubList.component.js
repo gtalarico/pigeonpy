@@ -10,7 +10,7 @@
 
         this.toggleGreeting = function() {
         //   this.greeting = (this.greeting == 'hello') ? 'whats up' : 'hello'
-          this.greeting = $forgeService.getData()
+          this.greeting = $forgeService.getHttp()
         }
       }
     })
