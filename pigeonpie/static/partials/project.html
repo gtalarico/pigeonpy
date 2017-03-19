@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="section" ng-controller="hubController">
+
+    <div class="row center-align">
+      <h5 class="header col s12 light">Project</h5>
+    </div>
+
+    <div class="row">
+      <div class="col s12 m4" ng-repeat="folder in folderList">
+        <div class="icon-block">
+          <h2 class="center orange-text"><i class="medium material-icons">cloud</i></h2>
+          <h5 class="center"><a href="" ng-click="loadItems(folder.id)">{{ folder.attributes.name }}</a></h5>
+          <p class="light center">{{ folder.attributes.extension.type }}</p>
+          <ul>
+              <li ng-repeat="item in itemList">{{item.attributes.displayName}}</li>
+
+          <ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
