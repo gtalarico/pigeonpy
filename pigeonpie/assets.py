@@ -5,17 +5,21 @@ from pigeonpie import app
 join = os.path.join
 COMPONENTS = 'components'
 
-scss = Bundle('css/main.scss',
+scss = Bundle('css/_variables-override.scss',
+              'css/main.scss',
               filters='libsass', output='packed/sass.css', depends='**/*.scss')
 
-css_assets = Bundle(scss,
+css_assets = Bundle('components/angular-loading-bar/build/loading-bar.css',
+                    scss,
                     filters='cssmin', output='packed/packed.css'
                     )
 
 js_assets = Bundle('components/jquery/dist/jquery.js',
                    'components/angular/angular.js',
                    'components/angular-route/angular-route.js',
+                   'components/angular-animate/angular-animate.js',
                    'components/materialize/dist/js/materialize.js',
+                   'components/angular-loading-bar/build/loading-bar.js',
                    'js/main.js',
                    'js/buckets-controller.js',
                    'js/hubs-controller.js',

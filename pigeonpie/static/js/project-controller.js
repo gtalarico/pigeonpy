@@ -6,7 +6,6 @@
         .controller('projectController', ['$scope', '$log', '$http', '$timeout', '$window','$routeParams',
             function($scope, $log, $http, $timeout, $window, $routeParams) {
 
-
                 $log.log($routeParams)
                     var hubId = $routeParams.hubId
                     var projectId = $routeParams.projectId
@@ -22,8 +21,8 @@
                             $log.log(response);
                         });
 
-                    $scope.loadItems = function(folderId) {
 
+                    $scope.loadItems = function(folderId) {
                         $http.get('/api/hubs/' + hubId + '/projects/' + projectId + '/folders/' + folderId)
                             .then(function successCallback(response) {
                                 $log.log(response);

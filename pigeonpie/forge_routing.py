@@ -16,20 +16,6 @@ def get_resource_data(resource, method='get', *args, **kwargs):
     return data
 
 
-class UserMenu(Resource):
-    """ Aggregate Resource """
-    def get(self):
-        menu = []
-        hub_data = get_resource_data(HubList, 'get')
-        for hub_data in hub_data.get('data', []):
-            hub = {'hub_id': hub_data['id'],
-                   'hub_name': hub_data['attributes']['name'],
-                   'hub_type': hub_data['attributes']['extension']['type']
-                   }
-            menu.append(hub)
-        return menu
-
-
 class User(Resource):
     def get(self):
         user = session.get('user')
@@ -118,7 +104,6 @@ class Bucket(AdminResource):
 
 
 app_api.add_resource(User, '/api/user')
-app_api.add_resource(UserMenu, '/api/user/menu')
 app_api.add_resource(HubList, '/api/hubs')
 app_api.add_resource(BucketList, '/api/buckets')
 app_api.add_resource(Bucket, '/api/buckets/<string:bucket_key>')

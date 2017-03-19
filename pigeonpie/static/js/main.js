@@ -10,7 +10,7 @@ $( document ).ready(function() {
 (function () {
 
   'use strict';
-  angular.module('PigeonPieApp',['ngRoute'])
+  angular.module('PigeonPieApp',['ngRoute', 'ngAnimate', 'angular-loading-bar'])
 
   .config(['$locationProvider','$routeProvider',
            function($locationProvider,$routeProvider){

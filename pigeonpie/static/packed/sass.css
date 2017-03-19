@@ -1,3 +1,4 @@
+
 .materialize-red {
   background-color: #e51c23 !important; }
 
@@ -6484,3 +6485,23 @@ span.card-title {
 .breadcrumb {
   padding-left: 20px;
   font-size: 12px; }
+
+#loading-bar-spinner .spinner-icon {
+  display: none;
+  border-top-color: #0ff !important;
+  border-left-color: #0ff !important; }
+
+#loading-bar .bar {
+  background: #f8981d; }
+
+.ng-enter {
+  -webkit-transition: 1s;
+  transition: 1s;
+  opacity: 0; }
+
+.ng-enter-active {
+  opacity: 1; }
+
+.ng-hide-add {
+  transition: all 0s ease;
+  opacity: 0; }

@@ -2,6 +2,7 @@
 //  MATERIALIZE +  OVERRIDES
 ///////////////////////////////////////////
 
+@import '_variables-override.scss';
 @import '../components/materialize/sass/materialize.scss';
 @import '../components/materialize/sass/components/_variables.scss';
 
@@ -58,4 +59,29 @@ span.card-title {
 .breadcrumb {
     padding-left: 20px;
     font-size: 12px;
+}
+
+#loading-bar-spinner .spinner-icon {
+  display: none;
+  border-top-color:  #0ff !important;
+  border-left-color: #0ff !important;
+}
+
+#loading-bar .bar {
+  background: $secondary-color;
+  }
+
+
+.ng-enter {
+  -webkit-transition: 1s;
+  transition: 1s;
+  opacity: 0;
+}
+.ng-enter-active {
+  opacity: 1;
+}
+// https://github.com/angular/angular.js/issues/10156#issuecomment-161275973
+.ng-hide-add {
+  transition: all 0s ease;
+  opacity: 0;
 }
