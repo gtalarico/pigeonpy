@@ -1,4 +1,5 @@
 """ App Authentication Singleton """
+import os
 import requests
 from collections import namedtuple
 from pigeonpie import app, session
@@ -53,6 +54,8 @@ class _ForgeUser(object):
             session['access_token'] = response.json()['access_token']
             session['refresh_token'] = response.json()['refresh_token']
             session['user'] = self.get_user_profile()
+            if session['user']['emailId'] == app.config['FORGE_ADMIN']:
+                session['user']['is_admin'] = True
             return True
 
         else:

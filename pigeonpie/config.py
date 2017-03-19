@@ -16,6 +16,7 @@ class Config(object):
     FORGE_CLIENT_ID = os.environ['FORGE_CLIENT_ID']
     FORGE_CLIENT_SECRET = os.environ['FORGE_CLIENT_SECRET']
     FORGE_CALLBACK = os.environ['FORGE_CALLBACK']
+    FORGE_ADMIN = os.environ['FORGE_ADMIN']
 
 
 class Development(Config):
