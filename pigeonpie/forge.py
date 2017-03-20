@@ -2,6 +2,8 @@
 import os
 import requests
 from collections import namedtuple
+from datetime import datetime, timedelta
+
 from pigeonpie import app, session
 
 # Config
@@ -19,11 +21,19 @@ JsonResponse = namedtuple('JsonResponse', ['json_data', 'response'])
 
 
 def process_response(response):
+    """ Creates named tupple (json_data, response) """
     try:
         return JsonResponse(response.json(), response)
     except Exception as errmsg:
         app.logger.error('Error parsing response: {}'.format(response.reason))
         return JsonResponse({'message': response.text}, response)
+
+
+def process_expires_in(timestamp):
+    """ Returns datetime objects of when token will expire """
+    now = datetime.now()
+    expiration = now + timedelta(seconds=timestamp)
+    return expiration
 
 
 class _ForgeUser(object):
@@ -115,6 +125,11 @@ class _ForgeApp(object):
 
         def request(self, method, *args, **kwargs):
             """ Inject Token and default header """
+            if datetime.now() > self.expiration:
+                self.deauthorize()
+                app.logger.info('FORGE APP: Token has Expired. Renewing')
+                self.get_new_token()
+
             self.session.headers.update(self.default_header)
             selected_method = getattr(self.session, method)
             response = selected_method(*args, **kwargs)
@@ -131,9 +146,10 @@ class _ForgeApp(object):
             url = URL_APP_GET_TOKEN
             response = requests.post(url, headers=TOKEN_HEADER, data=self.data)
             if response.status_code == 200:
-                data = response.json()
-                access_token = data['access_token']
+                token_data = response.json()
+                access_token = token_data['access_token']
                 self.default_header.update({'Authorization': 'Bearer {}'.format(access_token)})
+                self.expiration = process_expires_in(token_data['expires_in'])
                 app.logger.info('FORGE APP: Authentication Successful.')
                 return access_token
 
