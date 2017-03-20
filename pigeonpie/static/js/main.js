@@ -27,8 +27,7 @@ $( document ).ready(function() {
   'use strict';
   angular.module('PigeonPieApp',['ngRoute', 'ngAnimate', 'angular-loading-bar'])
 
-  .config(['$locationProvider','$routeProvider',
-           function($locationProvider,$routeProvider){
+  .config(function($locationProvider,$routeProvider){
       $locationProvider.hashPrefix('!');
 
       $routeProvider
@@ -38,12 +37,17 @@ $( document ).ready(function() {
 
           .when('/hubs',{
               templateUrl:'/static/partials/hubs.html',
-              controller: 'mainController'
+              controller: function($scope, forgeService) {
+                            forgeService.getHubs().then(function(hubList){
+                                $scope.hubList = hubList
+                                forgeService.hubList = hubList
+                            })
+                        },
           })
 
           .when('/hubs/:hubId/projects',{
               templateUrl:'/static/partials/hub.html',
-              controller: 'hubController'})
+              controller: 'mainController'})
 
           .when('/hubs/:hubId/projects/:projectId',{
               templateUrl:'/static/partials/project.html',
@@ -55,7 +59,7 @@ $( document ).ready(function() {
 
           .otherwise({redirectTo:'/',
                       templateUrl: '/static/partials/home.html',
-                      controller: 'homeController'})
-  }])
+                      controller: 'mainController'})
+  });
 
 }());

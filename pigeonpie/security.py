@@ -30,7 +30,6 @@ def require_user(func):
         if session.get('access_token') or app.testing is True:
             app.logger.info('[Secure Resource] User is Authenticated > {}'.format(request.url))
             return func(*args, **kwargs)
-
         app.logger.info('[Secure Resource] Unauthorized Resource.')
         abort(401)
     return wrapper

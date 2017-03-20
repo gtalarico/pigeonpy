@@ -1,10 +1,9 @@
-<div class="section no-pad-bot" ng-controller="homeController">
+<div class="section no-pad-bot">
   <div class="container">
     <br><br>
-    <!-- <h1 class="header center orange-text"></h1> -->
     <img id="logo" class="center" src="static/img/logo.svg">
     <div class="row center-align">
-      <h5 class="header col s12 light">Glad you are here {{ user.firstName}}</h5>
+      <h5 class="header col s12 light" ng-init="getUser()" ng-model="user">Glad you are here {{ user.firstName }}</h5>
     </div>
     <br><br>
 

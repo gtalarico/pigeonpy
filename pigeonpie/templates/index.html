@@ -38,7 +38,8 @@
         {% include '_nav-user.html' with context %}
 
         <!-- ANGULAR VIEW -->
-        <div class="row" ng-controller="mainController">
+        <!-- <div class="row" ng-controller="mainController" ng-init="getUser"> -->
+        <div class="row" ng-controller="mainController" ng-init="getUser">
             {% raw %}
             <ul id="slide-out" class="side-nav fixed">
               <li><a href="#!/buckets"><i class="material-icons">cloud</i>Buckets</a></li>

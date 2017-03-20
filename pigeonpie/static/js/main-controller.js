@@ -3,10 +3,14 @@
     'use strict';
 
     angular.module('PigeonPieApp')
-        .controller('mainController', ['$scope', '$log', '$http', '$window', '$location','$routeParams',
-            function($scope, $log, $http, $window, $location, $routeParams) {
+        .controller('mainController', ['$scope', '$log', '$http', '$window', '$location', 'forgeService',
+            function($scope, $log, $http, $window, $location, forgeService) {
 
-                    $http.get('/api/user')
+                    // Initialized on Page Load
+
+                    $scope.getUser = function(){
+
+                        $http.get('/api/user')
                         .then(function successCallback(response) {
                             if (response.status == 200){
                                 $log.log('Found User');
@@ -19,16 +23,23 @@
                                 $window.location = '#!/login'
                             }
                         });
+                    }
 
                     $scope.loadHubs = function(){
 
+                        if (forgeService.hubList.length != 0) {
+                            $log.log('Hubs were already loaded')
+                            $scope.hubList = forgeService.hubList
+                            return
+                            }
+
+                        $log.log('Loading Hubs')
                         $http.get('/api/hubs')
                             .then(function successCallback(response) {
                                 if (response.status == 200){
                                     console.log('Getting Hubs')
                                     $log.log(response);
                                     $scope.hubList = response.data.data
-                                    // $state.go('/hubs/');
                                     $location.path('/hubs/')
                                 }
                             }, function errorCallback(response) {
@@ -47,6 +58,7 @@
                                     var projectList = {}
                                     projectList[hubId] = response.data.data
                                     $scope.projectList = projectList
+                                    $location.path('/hubs/' + hubId + '/projects')
                                 }
                             }, function errorCallback(response) {
                                 if (response.status == 401){
@@ -72,9 +84,9 @@
                                 }
                             });
                     }
-            }
+            }]
 
-        ]);
+        );
 
 
 
