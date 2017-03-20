@@ -12,15 +12,25 @@
 //   flex-direction: column;
 // }
 
-// main {
-//   flex: 1 0 auto;
-//   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#fbfbfb+0,efefef+47,e2e2e2+100 */
-//   background: #fbfbfb; /* Old browsers */
-//   background: -moz-linear-gradient(-45deg, #fbfbfb 0%, #efefef 47%, #e2e2e2 100%); /* FF3.6-15 */
-//   background: -webkit-linear-gradient(-45deg, #fbfbfb 0%,#efefef 47%,#e2e2e2 100%); /* Chrome10-25,Safari5.1-6 */
-//   background: linear-gradient(135deg, #fbfbfb 0%,#efefef 47%,#e2e2e2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-//   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fbfbfb', endColorstr='#e2e2e2',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-// }
+$sidebar-width: 300px;
+
+div#login {
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0b9f9c+0,39ada9+55,3d9992+100 */
+    background: #0b9f9c; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #0b9f9c 0%, #39ada9 55%, #3d9992 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #0b9f9c 0%,#39ada9 55%,#3d9992 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #0b9f9c 0%,#39ada9 55%,#3d9992 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0b9f9c', endColorstr='#3d9992',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    min-height: 100vh;
+    .btn {
+        color: $primary-color;
+        background: white;
+    }
+}
+
+.btn {
+    border-radius: 1px;
+}
 
 .side-nav.fixed{
     background-color: $brand-grey-light;
@@ -35,29 +45,42 @@
 }
 
 main {
-    padding-left: 300px;
+    padding-left: $sidebar-width;
     @include mobile {
         padding-left: 0;
     }
 }
 
 footer.page-footer {
+    @include transition(all 0.75s ease-in-out);
+    @include mobile {
+        opacity: 0;
+    }
+    opacity: 1;
     bottom: 0px !important;
     position: absolute;
     width: 100%;
     text-align: center;
     height: $footer-height;
     z-index: 3;
+    padding-top: 0;
+    p {
+        letter-spacing: 1px;
+        font-size: 13px;
+        vertical-align: middle;
+        height: 70%;
+    }
+
 
 }
 
 #slide-out a {
     background-clip: padding-box;
-    padding-left: 12px;
+    padding-left: 10px;
     font-size: 85%;
     &.level-2 { padding-left: 20px; }
-    &.level-3 { padding-left: 28px; }
-    &.level-4 { padding-left: 36px; }
+    &.level-3 { padding-left: 30px; }
+    &.level-4 { padding-left: 40px; }
     i {
         margin-right: 20px;
     }
@@ -80,10 +103,12 @@ img#logo {
     display: block;
     margin: auto;
     margin-bottom: 50px;
-    min-width: 500px;
     @include transition(all 0.75s ease-in-out);
+    @include desktop {
+        min-width: 500px;
+    }
     @include mobile {
-         max-width: 300px;
+         width: 100%;
      }
 }
 
@@ -109,13 +134,15 @@ span.card-title {
 }
 
 #loading-bar-spinner .spinner-icon {
-  display: none;
+  // display: none;
+  z-index: -1;
   border-top-color:  #0ff !important;
   border-left-color: #0ff !important;
 }
 
 #loading-bar .bar {
   background: $secondary-color;
+  height: 3px;
   }
 
 

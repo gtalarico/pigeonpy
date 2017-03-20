@@ -29,40 +29,59 @@
 
         <script>
         var flaskSession = { user: {{session.get('user')|tojson}} };
+        var spinnerTemplate = '<div class="preloader-wrapper small active">' +
+                              '<div class="spinner-layer spinner-green-only">' +
+                              '<div class="circle-clipper left">' +
+                              '<div class="circle"></div>' +
+                              '</div><div class="gap-patch">' +
+                              '<div class="circle"></div>' +
+                              '</div><div class="circle-clipper right">' +
+                              '<div class="circle"></div>' +
+                              '</div>' +
+                              '</div>' +
+                              '</div>'
         </script>
 
     </head>
 
     <body ng-app="PigeonPieApp" ng-cloak>
 
-        {% include '_nav-user.html' with context %}
 
-        <!-- ANGULAR VIEW -->
-        <!-- <div class="row" ng-controller="mainController" ng-init="getUser"> -->
-        <div class="row" ng-controller="mainController" ng-init="getUser">
-            {% raw %}
-            <ul id="slide-out" class="side-nav fixed">
-              <li><a href="#!/buckets"><i class="material-icons">cloud</i>Buckets</a></li>
-              <li><a ng-click="loadHubs()" href=""><i class="material-icons">device_hub</i>Hubs</a></li>
+        {% if not session.user %}
+            {% include 'login.html' with context %}
+        {% else %}
 
-                    <li ng-if="hubList" ng-repeat="hub in hubList">
-                        <a ng-click="loadProjects(hub.id)"  class="level-2" href=""><i class="material-icons">folder_open</i>{{ hub.attributes.name }} </a>
-                        <ul>
-                            <li ng-repeat="project in projectList[hub.id]" class="level-3">
-                                <a ng-click="loadProject(project.id)"  class="level-3" href=""><i class="material-icons">business</i>{{ project.attributes.name }}</a>
-                            </li>
-                        </ul>
-                    <li/>
-            </ul>
+            {% include '_nav-user.html' with context %}
+            <!-- ANGULAR VIEW -->
+            <div class="row" ng-controller="mainController" ng-init="getUser">
+                {% raw %}
+                <ul id="slide-out" class="side-nav fixed">
+                  <li ng-if="isAdmin"><a href="#!/buckets"><i class="material-icons">cloud</i>Buckets</a></li>
 
-            <main ng-view>
-            </main>
-            {% endraw %}
-        </div>
+                  <li><a ng-click="loadHubs()" href=""><i class="material-icons">device_hub</i>Hubs</a></li>
+
+                  <li ng-if="hubList" ng-repeat="hub in hubList">
+                    <a ng-click="loadProjects(hub.id)"  class="level-2" href=""><i class="material-icons">folder_open</i>{{ hub.attributes.name }} </a>
+                    <ul>
+                        <li ng-repeat="project in projectList[hub.id]" class="level-3">
+                            <a ng-click="loadProject(project)"  class="level-3" href=""><i class="material-icons">business</i>{{ project.attributes.name }}</a>
+                        </li>
+                    </ul>
+                  <li/>
+
+                </ul>
+
+                <main ng-view>
+                </main>
+                {% endraw %}
+            </div>
+
 
         <footer class="page-footer">
-            <span class="teal-text text-lighten-4">Gui Talarico</span>
+            <p class="teal-text text-lighten-4">Forge API</p>
         </footer>
+        {% endif %}
+
 
         <!-- START JS WEBASSETS -->
         {% assets "js_assets" %}

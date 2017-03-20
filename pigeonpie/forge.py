@@ -65,7 +65,10 @@ class _ForgeUser(object):
             session['refresh_token'] = response.json()['refresh_token']
             session['user'] = self.get_user_profile()
             if session['user']['emailId'] == app.config['FORGE_ADMIN']:
-                session['user']['is_admin'] = True
+                is_admin = True
+            else:
+                is_admin = False
+            session['user']['is_admin'] = is_admin
             return True
 
         else:

@@ -26,6 +26,9 @@ $( document ).ready(function() {
 
   'use strict';
   angular.module('PigeonPieApp',['ngRoute', 'ngAnimate', 'angular-loading-bar'])
+  .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.includeSpinner = false;
+    }])
 
   .config(function($locationProvider,$routeProvider){
       $locationProvider.hashPrefix('!');
@@ -46,12 +49,24 @@ $( document ).ready(function() {
           })
 
           .when('/hubs/:hubId/projects',{
-              templateUrl:'/static/partials/hub.html',
-              controller: 'mainController'})
+              templateUrl:'/static/partials/projects.html',
+              controller: function($scope, forgeService, $routeParams) {
+                            var hubId = $routeParams['hubId']
+                            forgeService.getHubs().then(function(hubList){
+                                $scope.hubList = hubList
+                                forgeService.hubList = hubList
+                            })
+                            forgeService.getProjectList(hubId).then(function(projectList){
+                                $scope.projectList = projectList[hubId]
+                                forgeService.projectList = projectList[hubId]
+                            })
+                        },
+          })
 
-          .when('/hubs/:hubId/projects/:projectId',{
+
+          .when('/hubs/:hubId/projects/:projectId/folders',{
               templateUrl:'/static/partials/project.html',
-              controller: 'projectController'
+            //   controller: 'projectController'
           })
 
           .when('/login',{templateUrl:'/static/partials/login.html'})

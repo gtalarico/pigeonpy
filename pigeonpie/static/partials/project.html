@@ -1,19 +1,17 @@
-<div class="section" ng-controller="hubController">
+<div class="section">
 
     <div class="row center-align">
       <h5 class="header col s12 light">Project</h5>
     </div>
 
     <div class="row">
-      <div class="col s12 m4" ng-repeat="folder in folderList">
+      <div class="col s12 m4" ng-repeat="item in projectItems">
         <div class="icon-block">
-          <h2 class="center orange-text"><i class="medium material-icons">cloud</i></h2>
-          <h5 class="center"><a href="" ng-click="loadItems(folder.id)">{{ folder.attributes.name }}</a></h5>
-          <p class="light center">{{ folder.attributes.extension.type }}</p>
-          <ul>
-              <li ng-repeat="item in itemList">{{item.attributes.displayName}}</li>
-
-          <ul>
+          <h2 class="center orange-text"><i class="medium material-icons">insert_drive_file</i></h2>
+          <h6 class="center"><a href="" ng-click="loadItems(folder.id)">{{ item.attributes.displayName }}</a></h6>
+          <p class="light center">Created: {{ item.attributes.createTime }}</p>
+          <p class="light center">lastModifiedTime: {{ item.attributes.lastModifiedTime }}</p>
+          <p class="light center">ID: {{ item.id }}</p>
         </div>
       </div>
     </div>
