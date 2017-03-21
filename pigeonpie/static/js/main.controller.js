@@ -3,9 +3,8 @@
     'use strict';
 
     angular.module('PigeonPieApp')
-        .controller('mainController', function($scope, $log, $http, $window, $route, $routeParams, $location, forgeService, userService) {
+        .controller('mainController', function($scope, $log, $http, $window, $location, forgeService, userService) {
 
-                    $routeParams
                     // Check if Admin, Add to scope > Will load buckets
                     $scope.user = userService.user
 

@@ -25,34 +25,44 @@ $( document ).ready(function() {
 (function () {
 
   'use strict';
-  angular.module('PigeonPieApp',['ngRoute', 'ngAnimate', 'ngResource', 'angular-loading-bar'])
+  angular.module('PigeonPieApp',['ui.router', 'ngAnimate', 'ngResource', 'angular-loading-bar'])
 
-  .config(function($locationProvider,$routeProvider){
+  .config(function($locationProvider,$stateProvider){
       $locationProvider.hashPrefix('!');
 
-      $routeProvider
+      var hubsState = {
+          name: 'hubs',
+          url: '/hubs',
+          templateUrl:'/static/partials/hubs.html',
+          controller: function($scope, response) { $scope.hubList = response.data },
+          resolve: {response : function(forgeService) {
+                                return forgeService.hubList.get();
+                    }}
+      }
+
+      $stateProvider.state(hubsState)
         //   .when('/buckets',{
         //       templateUrl:'/static/partials/buckets.html',
         //       controller: 'bucketsController'})
           //
-          .when('/hubs',{
-              templateUrl:'/static/partials/hubs.html',
-              controller: function($scope, response) { $scope.hubList = response.data },
-              resolve: {response : function(forgeService) {
-                                    return forgeService.hubList.get();
-                                  }
-                        },
-          })
-          .when('/hubs/:hubId/projects',{
-              templateUrl:'/static/partials/projects.html',
-              controller: function($scope, response) { $scope.projectList = response.data },
-              resolve: { response : function($route, forgeService) {
-                                    var hubId = $route.current.params.hubId
-                                    console.log('Resolving project list for Hub: '+ hubId)
-                                    return forgeService.projectList.get({hubId: hubId});
-                                  }
-                        },
-          })
+        //   .when('/hubs',{
+        //       templateUrl:'/static/partials/hubs.html',
+        //       controller: function($scope, response) { $scope.hubList = response.data },
+        //       resolve: {response : function(forgeService) {
+        //                             return forgeService.hubList.get();
+        //                           }
+        //                 },
+        //   })
+        //   .when('/hubs/:hubId/projects',{
+        //       templateUrl:'/static/partials/projects.html',
+        //       controller: function($scope, response) { $scope.projectList = response.data },
+        //       resolve: { response : function($route, forgeService) {
+        //                             var hubId = $route.current.params.hubId
+        //                             console.log('Resolving project list for Hub: '+ hubId)
+        //                             return forgeService.projectList.get({hubId: hubId});
+        //                           }
+        //                 },
+        //   })
 
         //   .when('/hubs/:hubId/projects',{
         //       templateUrl:'/static/partials/projects.html',
@@ -75,13 +85,13 @@ $( document ).ready(function() {
         //     //   controller: 'projectController'
         //   })
 
-          .when('/login',{templateUrl:'/static/partials/login.html'})
-          .when('/upload',{templateUrl:'/static/partials/upload.html'})
-          .when('/',{templateUrl:'/static/partials/home.html'})
-
-          .otherwise({redirectTo:'/',
-                      templateUrl: '/static/partials/home.html',
-                  })
+        //   .when('/login',{templateUrl:'/static/partials/login.html'})
+        //   .when('/upload',{templateUrl:'/static/partials/upload.html'})
+        //   .when('/',{templateUrl:'/static/partials/home.html'})
+          //
+        //   .otherwise({redirectTo:'/',
+        //               templateUrl: '/static/partials/home.html',
+        //           })
   });
 
 }());
