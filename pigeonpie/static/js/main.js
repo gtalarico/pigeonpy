@@ -26,60 +26,69 @@ $( document ).ready(function() {
 
   'use strict';
   angular.module('PigeonPieApp',['ui.router', 'ngAnimate', 'ngResource', 'angular-loading-bar'])
+  .run(function($rootScope){
+      $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error){
+          console.log(error);
+      });
+  })
 
-  .config(function($locationProvider,$stateProvider){
-      $locationProvider.hashPrefix('!');
+  .config(function($stateProvider){
+    //   $locationProvider.hashPrefix('!');
 
-      var hubsState = {
-          name: 'hubs',
+    $stateProvider
+        .state('home', {
+            url: '',
+            templateUrl:'/static/partials/home.html',
+            controller: 'mainController'
+        })
+
+        .state('buckets', {
+            url: '/buckets',
+            templateUrl:'/static/partials/buckets.html',
+            controller: 'bucketsController'
+        })
+
+
+        .state('hubs', {
           url: '/hubs',
-          templateUrl:'/static/partials/hubs.html',
-          controller: function($scope, response) { $scope.hubList = response.data },
-          resolve: {response : function(forgeService) {
-                                return forgeService.hubList.get();
-                    }}
-      }
+          templateUrl:'/static/partials/hubs.html', // TODO: Fix root scope
+          resolve: { hubListResponse : function(forgeService) {
+                                        return forgeService.hubList.get();
+                    }},
+          controller: function($rootScope, hubListResponse) {
+              $rootScope.hubList = hubListResponse.data
+          },
+        })
 
-      $stateProvider.state(hubsState)
-        //   .when('/buckets',{
-        //       templateUrl:'/static/partials/buckets.html',
-        //       controller: 'bucketsController'})
-          //
-        //   .when('/hubs',{
-        //       templateUrl:'/static/partials/hubs.html',
-        //       controller: function($scope, response) { $scope.hubList = response.data },
-        //       resolve: {response : function(forgeService) {
-        //                             return forgeService.hubList.get();
-        //                           }
-        //                 },
-        //   })
-        //   .when('/hubs/:hubId/projects',{
-        //       templateUrl:'/static/partials/projects.html',
-        //       controller: function($scope, response) { $scope.projectList = response.data },
-        //       resolve: { response : function($route, forgeService) {
-        //                             var hubId = $route.current.params.hubId
-        //                             console.log('Resolving project list for Hub: '+ hubId)
-        //                             return forgeService.projectList.get({hubId: hubId});
-        //                           }
-        //                 },
-        //   })
+        .state('projects', {
+          url: '/hubs/:hubId/projects',
+          templateUrl:'/static/partials/projects.html',
+          controller: function($rootScope, projectListResponse, hubListResponse) {
+              $rootScope.projectList = projectListResponse.data;
+              $rootScope.hubList = hubListResponse.data },
+          resolve: { projectListResponse : function(forgeService, $stateParams) {
+                                                var hubId = $stateParams.hubId;
+                                                return forgeService.projectList.get({hubId: hubId});
+                                            },
+                     hubListResponse : function(forgeService) {
+                                                return forgeService.hubList.get();
+                                                      }
+                }
+        })
 
-        //   .when('/hubs/:hubId/projects',{
-        //       templateUrl:'/static/partials/projects.html',
-        //       controller: function($scope, forgeService, $routeParams) {
-        //                     var hubId = $routeParams['hubId']
-        //                     forgeService.getHubs().then(function(hubList){
-        //                         $scope.hubList = hubList
-        //                         forgeService.hubList = hubList
-        //                     })
-        //                     forgeService.getProjectList(hubId).then(function(projectList){
-        //                         $scope.projectList = projectList[hubId]
-        //                         forgeService.projectList = projectList[hubId]
-        //                     })
-        //                 },
-        //   })
-          //
-          //
+      //   .when('/hubs/:hubId/projects',{
+      //       templateUrl:'/static/partials/projects.html',
+      //       controller: function($scope, response) { $scope.projectList = response.data },
+      //       resolve: { response : function($route, forgeService) {
+      //                             var hubId = $route.current.params.hubId
+      //                             console.log('Resolving project list for Hub: '+ hubId)
+      //                             return forgeService.projectList.get({hubId: hubId});
+      //                           }
+      //                 },
+      //   })
+
+
+
         //   .when('/hubs/:hubId/projects/:projectId/folders',{
         //       templateUrl:'/static/partials/project.html',
         //     //   controller: 'projectController'

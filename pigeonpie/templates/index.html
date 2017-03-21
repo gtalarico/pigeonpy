@@ -44,15 +44,15 @@
         <!-- ANGULAR VIEW -->
         <div class="row" ng-controller="mainController">
             <ul id="slide-out" class="side-nav fixed">
-              <li ng-if="user.is_admin"><a href="#!/buckets"><i class="material-icons">cloud</i>Buckets</a></li>
+              <li ng-if="user.is_admin"><a ui-sref="buckets"><i class="material-icons">cloud</i>Buckets</a></li>
 
-              <li><a ng-click="loadHubs()" href=""><i class="material-icons">device_hub</i>Hubs</a></li>
+              <li><a ui-sref="hubs"><i class="material-icons">device_hub</i>Hubs</a></li>
 
               <li ng-if="hubList" ng-repeat="hub in hubList">
-                <a ng-click="loadProjects(hub.id)"  class="level-2" href=""><i class="material-icons">folder_open</i>{{ hub.attributes.name }} </a>
+                <a ui-sref="projects({hubId:hub.id})"  class="level-2" href=""><i class="material-icons">folder_open</i>{{ hub.attributes.name }} </a>
                 <ul>
                     <li ng-repeat="project in projectList" class="level-3">
-                        <a ng-click="loadProject(project)"  class="level-3" href="" ng-if="hub.id == project.relationships.hub.data.id">
+                        <a href="" class="level-3" ng-if="hub.id == project.relationships.hub.data.id">
                             <i class="material-icons">business</i>{{ project.attributes.name }}
                         </a>
                     </li>

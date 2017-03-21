@@ -3,31 +3,43 @@
     'use strict';
 
     angular.module('PigeonPieApp')
-        .controller('mainController', function($scope, $log, $http, $window, $location, forgeService, userService) {
+        .controller('mainController', function($rootScope, $scope, $log, $http, $state, forgeService, userService) {
+
+                    // $rootScope.$on('$stateChangeSuccess',
+                    //   function(event, toState, toParams, fromState, fromParams) {
+                        // if ($state.current.name == 'hubs'){ loadHubs() } // Rebuild State - This should go into Router State Management
+                    //   }
+                    // )
 
                     // Check if Admin, Add to scope > Will load buckets
                     $scope.user = userService.user
 
-                    $scope.loadHubs = loadHubs
-                    if ($scope.hubList){ loadHubs() } // Rebuild State - This should go into Router State Management
-                    function loadHubs(){
-                        console.log('Main: loadHubs()')
-                        var hubList = forgeService.hubList.get();
-                        hubList.$promise.then(function(response){
-                            $scope.hubList = response.data
-                        })
-                    }
+                    // $scope.loadHubs = loadHubs
+                    // function loadHubs(){
+                    //     console.log('Main: loadHubs()')
+                    //     $state.go('hubs', {} );
+                    //     console.log('State Changed')
+                    //     var hubList = forgeService.hubList.get();
+                    //     hubList.$promise.then(function(response){
+                    //         // $scope.hubList = response.data;
+                    //     })
+                    // }
+                    //
+                    //
+                    // $scope.loadProjects = loadProjects
+                    // function loadProjects(hubId){
+                    //     console.log('Main: loadProjects(hubId)')
+                    //     console.log(hubId)
+                    //     var projectList = forgeService.projectList.get({hubId: hubId});
+                    //     projectList.$promise.then(function(response){
+                    //         $scope.projectList = response.data;
+                    //         // $state.go('projects', {hubId: hubId}, { location: true });
+                    //     })
+                    // }
 
 
-                    $scope.loadProjects = loadProjects
-                    // if ($location.path().indexOf('projects') != -1){ loadProjects($routeParams.hubId) }
-                    function loadProjects(hubId){
-                        console.log('Main: loadProjects(hubId)')
-                        var projectList = forgeService.projectList.get({hubId: hubId});
-                        projectList.$promise.then(function(response){
-                            $scope.projectList = response.data
-                        })
-                    }
+
+
                     //
                     //     if (forgeService.projectList[hubId] != undefined) {
                     //         $log.log('Projects were already loaded')
