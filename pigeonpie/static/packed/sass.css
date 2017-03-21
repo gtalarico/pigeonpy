@@ -6437,6 +6437,9 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   .picker--time .picker__box {
     margin-bottom: 5em; } }
 
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important; }
+
 div#login {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0b9f9c+0,39ada9+55,3d9992+100 */
   background: #0b9f9c;

@@ -63,8 +63,9 @@ class _ForgeUser(object):
             app.logger.info('FORGE USER: Authentication Successful.')
             session['access_token'] = response.json()['access_token']
             session['refresh_token'] = response.json()['refresh_token']
-            session['user'] = self.get_user_profile()
-            if session['user']['emailId'] == app.config['FORGE_ADMIN']:
+            session['user'] = {}
+            session['user']['profile'] = self.get_user_profile()
+            if session['user']['profile']['emailId'] == app.config['FORGE_ADMIN']:
                 is_admin = True
             else:
                 is_admin = False

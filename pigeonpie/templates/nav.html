@@ -1,36 +1,27 @@
-
-<div class="navbar-fixed">
+{% raw  %}
+<div class="navbar-fixed" ng-controller="navController">
     <nav>
       <div class="nav-wrapper">
-
         <a href="#!" class="brand-logo"><img id="nav-logo" src="/static/img/logo-white.svg"/></a>
-
         <!-- Main Menu Collapse -->
         <a href="#" data-activates="slide-out" class="button-collapse left"><i class="material-icons">menu</i></a>
 
-        {% if session.user %}
         <ul class="right hide-on-med-and-down">
-            <li><a class="dropdown-button" href="#!" data-activates="dropdown-user">{{ session.user.firstName }} {{ session.user.lastName }}<i class="material-icons right">arrow_drop_down</i></a></li>
+            <li ng-if="user.is_admin"><i class="material-icons small right">lock</i></li>
+            <li><a class="dropdown-button" href="#!" data-activates="dropdown-user"><i class="material-icons right">arrow_drop_down</i>{{ user.profile.firstName }} {{ user.profile.lastName }}</a></li>
         </ul>
 
         <!-- Profile Menu Collapse -->
         <a href="#" data-activates="mobile-demo" class="right button-collapse right"><i class="material-icons">account_circle</i></a>
 
         <ul id="dropdown-user" class="right dropdown-content">
-          <!-- <li><a href="">Profile</a></li> -->
-          <!-- <li class="divider"></li> -->
           <li><a href="/logout">Logout</a></li>
         </ul>
-        {% endif %}
-
-
-
       </div>
     </nav>
 </div>
 
 <ul class="side-nav" id="mobile-demo">
-    <li><a href="/profile"><i class="material-icons">account_circle</i> Profile</a></li>
-    <li class="divider"></li>
     <li><a href="/logout"><i class="material-icons">exit_to_app</i> Logout</a></li>
 </ul>
+{% endraw %}

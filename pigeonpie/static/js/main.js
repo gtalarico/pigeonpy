@@ -25,56 +25,63 @@ $( document ).ready(function() {
 (function () {
 
   'use strict';
-  angular.module('PigeonPieApp',['ngRoute', 'ngAnimate', 'angular-loading-bar'])
-  .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
-    cfpLoadingBarProvider.includeSpinner = false;
-    }])
+  angular.module('PigeonPieApp',['ngRoute', 'ngAnimate', 'ngResource', 'angular-loading-bar'])
 
   .config(function($locationProvider,$routeProvider){
       $locationProvider.hashPrefix('!');
 
       $routeProvider
-          .when('/buckets',{
-              templateUrl:'/static/partials/buckets.html',
-              controller: 'bucketsController'})
-
+        //   .when('/buckets',{
+        //       templateUrl:'/static/partials/buckets.html',
+        //       controller: 'bucketsController'})
+          //
           .when('/hubs',{
               templateUrl:'/static/partials/hubs.html',
-              controller: function($scope, forgeService) {
-                            forgeService.getHubs().then(function(hubList){
-                                $scope.hubList = hubList
-                                forgeService.hubList = hubList
-                            })
+              controller: function($scope, response) { $scope.hubList = response.data },
+              resolve: {response : function(forgeService) {
+                                    return forgeService.hubList.get();
+                                  }
                         },
           })
-
           .when('/hubs/:hubId/projects',{
               templateUrl:'/static/partials/projects.html',
-              controller: function($scope, forgeService, $routeParams) {
-                            var hubId = $routeParams['hubId']
-                            forgeService.getHubs().then(function(hubList){
-                                $scope.hubList = hubList
-                                forgeService.hubList = hubList
-                            })
-                            forgeService.getProjectList(hubId).then(function(projectList){
-                                $scope.projectList = projectList[hubId]
-                                forgeService.projectList = projectList[hubId]
-                            })
+              controller: function($scope, response) { $scope.projectList = response.data },
+              resolve: { response : function($route, forgeService) {
+                                    var hubId = $route.current.params.hubId
+                                    console.log('Resolving project list for Hub: '+ hubId)
+                                    return forgeService.projectList.get({hubId: hubId});
+                                  }
                         },
           })
 
-
-          .when('/hubs/:hubId/projects/:projectId/folders',{
-              templateUrl:'/static/partials/project.html',
-            //   controller: 'projectController'
-          })
+        //   .when('/hubs/:hubId/projects',{
+        //       templateUrl:'/static/partials/projects.html',
+        //       controller: function($scope, forgeService, $routeParams) {
+        //                     var hubId = $routeParams['hubId']
+        //                     forgeService.getHubs().then(function(hubList){
+        //                         $scope.hubList = hubList
+        //                         forgeService.hubList = hubList
+        //                     })
+        //                     forgeService.getProjectList(hubId).then(function(projectList){
+        //                         $scope.projectList = projectList[hubId]
+        //                         forgeService.projectList = projectList[hubId]
+        //                     })
+        //                 },
+        //   })
+          //
+          //
+        //   .when('/hubs/:hubId/projects/:projectId/folders',{
+        //       templateUrl:'/static/partials/project.html',
+        //     //   controller: 'projectController'
+        //   })
 
           .when('/login',{templateUrl:'/static/partials/login.html'})
           .when('/upload',{templateUrl:'/static/partials/upload.html'})
+          .when('/',{templateUrl:'/static/partials/home.html'})
 
           .otherwise({redirectTo:'/',
                       templateUrl: '/static/partials/home.html',
-                      controller: 'mainController'})
+                  })
   });
 
 }());
