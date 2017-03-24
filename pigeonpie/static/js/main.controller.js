@@ -5,8 +5,11 @@
     angular.module('PigeonPieApp')
         .controller('mainController', function($scope, $timeout, $log, $http, $state, forgeService, userService) {
 
-            $scope.user = userService.user
+            if (!userService.isLoggedIn()) {
+                $state.go('login')
+            }
 
+            $scope.user = userService.getUser()
 
             $scope.$on('$viewContentLoaded', function(event) {
               $timeout(function() {
@@ -27,10 +30,7 @@
                   );
 
                   $(".dropdown-button").dropdown();
-
-
-
-              },200);
+              },100);
             });
 
 

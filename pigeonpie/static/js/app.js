@@ -20,10 +20,6 @@ $(".dropdown-button").dropdown();
 
 });
 
-// https://github.com/mgonto/restangular
-// https://github.com/emmaguo/angular-poller
-// https://chieffancypants.github.io/angular-loading-bar/
-
 (function () {
 
   'use strict';
@@ -47,10 +43,15 @@ $(".dropdown-button").dropdown();
                       controller: 'mainController',
                         },
                 'nav.side@app' : { templateUrl: '/static/partials/nav.side.html',},
-                // 'nav.top@app' : { templateUrl: '/static/partials/nav.top.html',},
+                'nav.top@app' : { templateUrl: '/static/partials/nav.top.html',},
                 // 'footer@app' : { templateUrl: '/static/partials/footer.html',},
             },
           })
+          .state('login', {
+              url: '/login',
+              templateUrl: '/static/partials/login.html',
+          })
+
           .state('app.home', {
               url: '',
               views: { 'main@app': {
@@ -68,22 +69,70 @@ $(".dropdown-button").dropdown();
           })
           .state('app.hubs', {
               url: '/hubs',
+              resolve: { hubListResponse : resolveHubs },
               views: { 'main@app': {
-                          templateUrl:'/static/partials/hubs.html'
+                          templateUrl:'/static/partials/hubs.html',
+                          controller: function($rootScope, hubListResponse) {
+                                  console.log('Hubs: Adding HubList to rootScope')
+                                  $rootScope.hubList = hubListResponse.data
+                                  console.log('Hubs: hubList: ' + $rootScope.hubList);
+                                  console.log('Hubs: projectList: ' + $rootScope.projectList);
+                                  },
                       }
               }
           })
-        //   .state('hubs', {
-        //     url: '/hubs',
-        //     templateUrl:'/static/partials/hubs.html', // TODO: Fix root scope
-        //     resolve: { hubListResponse : function(forgeService) {
-        //                                   return forgeService.hubList.get();
-        //               }},
-        //     controller: function($scope, hubListResponse) {
-        //         $scope.hubList = hubListResponse.data
-        //         console.log('Hublist set')
-        //     },
-        //   })
+          .state('app.hubs.projects', {
+              url: '/:hubId/projects',
+              resolve: { projectListResponse : resolveProjects },
+              views: { 'main@app': {
+                          templateUrl:'/static/partials/projects.html',
+                          controller: function($rootScope, projectListResponse, hubListResponse) {
+                              console.log('Projects: Adding HubList + ProjectList to rootScope')
+                              $rootScope.hubList = hubListResponse.data;
+                              $rootScope.projectList = projectListResponse.data;
+                              console.log('Projects: hubList: ' + $rootScope.hubList);
+                              console.log('Projects: projectList: ' + $rootScope.projectList);
+                          },
+                     }
+              }
+          })
+          .state('app.hubs.projects.items', {
+              url: '/:projectId/folders/:folderId',
+              resolve: { itemListResponse : resolveItems },
+              views: { 'main@app': {
+                          templateUrl:'/static/partials/items.html',
+                          controller: function($rootScope, itemListResponse, projectListResponse, hubListResponse) {
+                              console.log('Items: Adding itemList')
+                              $rootScope.hubList = hubListResponse.data;
+                              $rootScope.projectList = projectListResponse.data;
+                              $rootScope.itemList = itemListResponse.data;
+                              console.log('Items: ItemsList: ' + $rootScope.itemList);
+                              console.log('Items: hubList: ' + $rootScope.hubList);
+                              console.log('Items: projectList: ' + $rootScope.projectList);
+                          },
+                     }
+              }
+          })
+
+        function resolveHubs(forgeService) {
+            console.log('Resolving HubList')
+            return forgeService.hubList.get();
+        }
+
+        function resolveProjects(forgeService, $stateParams) {
+            var hubId = $stateParams.hubId;
+            console.log('Resolving Projects for Hub: ' + hubId)
+            return forgeService.projectList.get({hubId: hubId});
+        }
+
+        function resolveItems(forgeService, $stateParams) {
+            var projectId = $stateParams.projectId;
+            var folderId = $stateParams.folderId;
+            console.log('Resolving Items for project: ' + projectId)
+            console.log('folderId: ' + projectId)
+            return forgeService.itemList.get({projectId: projectId, folderId: folderId});
+        }
+
         // .state('list', {
         //     parent: 'index',
         //     url: '/list',
@@ -106,40 +155,7 @@ $(".dropdown-button").dropdown();
         //
         //
 
-        //
-        // .state('hubs.projects', {
-        //   url: '/hubs/:hubId/projects',
-        //   templateUrl:'/static/partials/projects.html',
-        //   controller: function($scope, projectListResponse, hubListResponse) {
-        //       $scope.projectList = projectListResponse.data;
-        //       $scope.hubList = $scope.hubListResponse.data
-        //       console.log('>' + $scope.hubListResponse.data)
-        //   },
-        //   resolve: { projectListResponse : function(forgeService, $stateParams) {
-        //                                         var hubId = $stateParams.hubId;
-        //                                         console.log('Resolving Projects for: ' + hubId)
-        //                                         return forgeService.projectList.get({hubId: hubId});
-        //                                     },
-        //              hubListResponse : function(forgeService) {
-        //                                         return forgeService.hubList.get();
-        //                                               }
-        //         }
-        // })
-
-      //   .when('/hubs/:hubId/projects',{
-      //       templateUrl:'/static/partials/projects.html',
-      //       controller: function($scope, response) { $scope.projectList = response.data },
-      //       resolve: { response : function($route, forgeService) {
-      //                             var hubId = $route.current.params.hubId
-      //                             console.log('Resolving project list for Hub: '+ hubId)
-      //                             return forgeService.projectList.get({hubId: hubId});
-      //                           }
-      //                 },
-      //   })
-
-
-
-        //   .when('/hubs/:hubId/projects/:projectId/folders',{
+    //   .when('/hubs/:hubId/projects/:projectId/folders',{
         //       templateUrl:'/static/partials/project.html',
         //     //   controller: 'projectController'
         //   })

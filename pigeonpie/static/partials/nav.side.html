@@ -5,10 +5,11 @@
       <li><a ui-sref="app.hubs"><i class="material-icons">device_hub</i>Hubs</a></li>
 
       <li ng-if="hubList" ng-repeat="hub in hubList">
-        <a ui-sref="hubs.projects({hubId:hub.id})"  class="level-2" href=""><i class="material-icons">folder_open</i>{{ hub.attributes.name }} </a>
+        <a ui-sref="app.hubs.projects({hubId:hub.id})"  class="level-2" href=""><i class="material-icons">folder_open</i>{{ hub.attributes.name }} </a>
         <ul>
             <li ng-repeat="project in projectList" class="level-3">
-                <a href="" class="level-3" ng-if="hub.id == project.relationships.hub.data.id">
+                <a ui-sref="app.hubs.projects.items({projectId: project.id, folderId: project.relationships.rootFolder.data.id})"
+                   class="level-3" ng-if="hub.id == project.relationships.hub.data.id">
                     <i class="material-icons">business</i>{{ project.attributes.name }}
                 </a>
             </li>

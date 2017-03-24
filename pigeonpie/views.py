@@ -8,7 +8,7 @@ from pigeonpie.forge import ForgeUser, SCOPE_USER
 def index():
     return render_template('index.html')
 
-@app.route('/login')
+@app.route('/user/login')
 def login():
     redirect_url = request.args.get('redirect', '/')
     params = {'client_id': app.config['FORGE_CLIENT_ID'],

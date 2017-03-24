@@ -7,7 +7,7 @@
       <div class="col s12 m4" ng-repeat="project in projectList">
         <div class="icon-block">
           <h2 class="center orange-text"><i class="medium material-icons">folder_open</i></h2>
-          <h6 class="center"><a href="" ng-click="loadProject(project)">{{ project.attributes.name }}</a></h6>
+          <h6 class="center"><a ui-sref="app.hubs.projects.items({projectId: project.id, folderId: project.relationships.rootFolder.data.id})">{{ project.attributes.name }}</a></h6>
           <p class="light center">{{ project.attributes.extension.type }}</p>
         </div>
       </div>

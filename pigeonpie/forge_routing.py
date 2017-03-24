@@ -28,8 +28,9 @@ class User(Resource):
 class FolderItems(UserResouce):
     url = 'https://developer.api.autodesk.com/data/v1/projects/{project_id}/folders/{folder_id}/contents'
 
-    def get(self, hub_id, project_id, folder_id):
+    def get(self, project_id, folder_id):
         url = FolderItems.url.format(project_id=project_id, folder_id=folder_id)
+        print('requesting... : {}'.format(url))
         json_data, response = ForgeUser.request('get', url)
         code = response.status_code
         return jsonify(json_data) if code == 200 else abort(code)
@@ -109,4 +110,4 @@ app_api.add_resource(BucketList, '/api/buckets')
 app_api.add_resource(Bucket, '/api/buckets/<string:bucket_key>')
 app_api.add_resource(ProjectList, '/api/hubs/<string:hub_id>/projects')
 app_api.add_resource(ProjectFolders, '/api/hubs/<string:hub_id>/projects/<string:project_id>/folders')
-app_api.add_resource(FolderItems, '/api/hubs/<string:hub_id>/projects/<string:project_id>/folders/<string:folder_id>')
+app_api.add_resource(FolderItems, '/api/projects/<string:project_id>/folders/<string:folder_id>')

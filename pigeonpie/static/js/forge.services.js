@@ -18,12 +18,20 @@ angular.module('PigeonPieApp')
                                 {hubId: '@hubId'},
                                 { get: { method: 'GET', cache:true } }
                             )
+        }
 
-            }
+        function itemList(projectId, folderId) {
+            return $resource('/api/projects/:projectId/folders/:folderId',
+                                {projectId: '@projectId', folderId: '@folderId'},
+                                { get: { method: 'GET', cache:true } }
+                            )
+        }
+
 
         return {
             hubList: hubList(),
             projectList: projectList(),
+            itemList: itemList(),
         }
 
 

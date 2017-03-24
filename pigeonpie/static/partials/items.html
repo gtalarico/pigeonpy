@@ -1,15 +1,30 @@
-<div class="section" ng-controller="hubController">
+<div class="section">
+
     <div class="row center-align">
-      <h5 class="header col s12 light">Hub</h5>
+      <h5 class="header col s12 light">Project</h5>
     </div>
 
-    <div class="row">
-      <div class="col s12 m4" ng-repeat="project in projectList">
-        <div class="icon-block">
-          <h2 class="center orange-text"><i class="medium material-icons">cloud</i></h2>
-          <h5 class="center"><a href="" ng-click="loadProject(project.id)">{{ project.attributes.name }}</a></h5>
-          <p class="light center">{{ project.attributes.extension.type }}</p>
+    <div class="container">
+        <div class="row">
+          <div class="col s12 m6 l6" ng-repeat="item in itemList">
+
+            <div class="card hoverable grey lighten-4">
+                <div class="card-content">
+                    <span class="card-title"><i class="small material-icons">insert_drive_file</i> {{ item.attributes.displayName }}</span>
+
+                    <p class="light">Created: {{ item.attributes.createTime }}</p>
+                    <p class="light">lastModifiedTime: {{ item.attributes.lastModifiedTime }}</p>
+                    <p class="light">ID: {{ item.id }}</p>
+                </div>
+                <div class="card-action">
+                    <a href="#">Download</a>
+                    <a href="#">Derivative</a>
+                </div>
+            </div>
+
+
+          </div>
         </div>
-      </div>
     </div>
+
 </div>

@@ -36,15 +36,14 @@
 
     <body ng-app="PigeonPieApp">
 
-
-        {% if session.user %}
+        {# if session.user #}
         {# include 'nav.html' with context #}
+        {# else #}
+        {# include 'login.html' with context #}
+        {# endif #}
 
         <ui-view></ui-view>
 
-        {% else %}
-        {% include 'login.html' with context %}
-        {% endif %}
 
 
         <!-- START JS WEBASSETS -->
