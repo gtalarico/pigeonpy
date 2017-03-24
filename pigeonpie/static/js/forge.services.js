@@ -21,7 +21,7 @@ angular.module('PigeonPieApp')
         }
 
         function itemList(projectId, folderId) {
-            return $resource('/api/projects/:projectId/folders/:folderId',
+            return $resource('/api/projects/:projectId/folders/:folderId/items',
                                 {projectId: '@projectId', folderId: '@folderId'},
                                 { get: { method: 'GET', cache:true } }
                             )

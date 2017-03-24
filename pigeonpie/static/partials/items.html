@@ -17,8 +17,9 @@
                     <p class="light">ID: {{ item.id }}</p>
                 </div>
                 <div class="card-action">
-                    <a href="#">Download</a>
+                    <a href="/api/projects/item/folders/<string:folder_id>/items/<string:itemId>/download">Download</a>
                     <a href="#">View</a>
+                    <!-- <a href="#">{{ itemList }}</a> -->
                 </div>
             </div>
 

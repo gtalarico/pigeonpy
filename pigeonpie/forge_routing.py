@@ -23,6 +23,18 @@ class User(Resource):
             return jsonify(user)
         abort(401)
 
+# api/hubs/a.YnVzaW5lc3M6d2V3b3Jr/projects/a.YnVzaW5lc3M6d2V3b3JrIzIwMTcwMjIxNjQzMzc4NzY/folders/urn:adsk.wipprod:fs.folder:co.J8YTUaiMThKOfWuDL1v9Ig/items/itemId
+class DownloadItem(UserResouce):
+    """ This should receive info for a file, and prepare a response + redirect to download """
+    url = 'https://developer.api.autodesk.com/data/v1/projects/{project_id}/folders/{folder_id}/items/{item_id}'
+
+    def get(self, project_id, folder_id, item_id):
+        url = FolderItems.url.format(project_id=project_id, folder_id=folder_id, item_id=item_id)
+        print('requesting... : {}'.format(url))
+        json_data, response = ForgeUser.request('get', url)
+        code = response.status_code
+        return jsonify(json_data) if code == 200 else abort(code)
+
 
 # http://localhost:5000/api/hubs/a.YnVzaW5lc3M6d2V3b3Jr/projects/a.YnVzaW5lc3M6d2V3b3JrIzIwMTcwMjIxNjQzMzc4NzY/folders/urn:adsk.wipprod:fs.folder:co.J8YTUaiMThKOfWuDL1v9Ig
 class FolderItems(UserResouce):
@@ -36,15 +48,15 @@ class FolderItems(UserResouce):
         return jsonify(json_data) if code == 200 else abort(code)
 
 
-# http://localhost:5000/api/hubs/a.YnVzaW5lc3M6d2V3b3Jr/projects/a.YnVzaW5lc3M6d2V3b3JrIzIwMTcwMjIxNjQzMzc4NzY/folders
-class ProjectFolders(UserResouce):
-    url = 'https://developer.api.autodesk.com/project/v1/hubs/{hub_id}/projects/{project_id}/topFolders'
-
-    def get(self, hub_id, project_id):
-        url = ProjectFolders.url.format(hub_id=hub_id, project_id=project_id)
-        json_data, response = ForgeUser.request('get', url)
-        code = response.status_code
-        return jsonify(json_data) if code == 200 else abort(code)
+# # http://localhost:5000/api/hubs/a.YnVzaW5lc3M6d2V3b3Jr/projects/a.YnVzaW5lc3M6d2V3b3JrIzIwMTcwMjIxNjQzMzc4NzY/folders
+# class ProjectFolders(UserResouce):
+#     url = 'https://developer.api.autodesk.com/project/v1/hubs/{hub_id}/projects/{project_id}/topFolders'
+#
+#     def get(self, hub_id, project_id):
+#         url = ProjectFolders.url.format(hub_id=hub_id, project_id=project_id)
+#         json_data, response = ForgeUser.request('get', url)
+#         code = response.status_code
+#         return jsonify(json_data) if code == 200 else abort(code)
 
 
 # http://localhost:5000/api/hubs/a.YnVzaW5lc3M6d2V3b3Jr/projects
@@ -109,5 +121,6 @@ app_api.add_resource(HubList, '/api/hubs')
 app_api.add_resource(BucketList, '/api/buckets')
 app_api.add_resource(Bucket, '/api/buckets/<string:bucket_key>')
 app_api.add_resource(ProjectList, '/api/hubs/<string:hub_id>/projects')
-app_api.add_resource(ProjectFolders, '/api/hubs/<string:hub_id>/projects/<string:project_id>/folders')
-app_api.add_resource(FolderItems, '/api/projects/<string:project_id>/folders/<string:folder_id>')
+# app_api.add_resource(ProjectFolders, '/api/hubs/<string:hub_id>/projects/<string:project_id>/folders')
+app_api.add_resource(FolderItems, '/api/projects/<string:project_id>/folders/<string:folder_id>/items')
+app_api.add_resource(DownloadItem, '/api/projects/<string:project_id>/folders/<string:folder_id>/items/<string:itemId>/download')
