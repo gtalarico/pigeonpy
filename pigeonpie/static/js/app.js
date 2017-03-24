@@ -86,7 +86,7 @@ $(".dropdown-button").dropdown();
               resolve: { projectListResponse : resolveProjects },
               views: { 'main@app': {
                           templateUrl:'/static/partials/projects.html',
-                          controller: function($rootScope, projectListResponse, hubListResponse) {
+                          controller: function($rootScope, hubListResponse, projectListResponse) {
                               console.log('Projects: Adding HubList + ProjectList to rootScope')
                               $rootScope.hubList = hubListResponse.data;
                               $rootScope.projectList = projectListResponse.data;
@@ -101,7 +101,7 @@ $(".dropdown-button").dropdown();
               resolve: { itemListResponse : resolveItems },
               views: { 'main@app': {
                           templateUrl:'/static/partials/items.html',
-                          controller: function($rootScope, itemListResponse, projectListResponse, hubListResponse) {
+                          controller: function($rootScope, hubListResponse, projectListResponse, itemListResponse) {
                               console.log('Items: Adding itemList')
                               $rootScope.hubList = hubListResponse.data;
                               $rootScope.projectList = projectListResponse.data;
@@ -113,16 +113,16 @@ $(".dropdown-button").dropdown();
                      }
               }
           })
-
+        // http://www.jvandemo.com/how-to-resolve-angularjs-resources-with-ui-router/
         function resolveHubs(forgeService) {
             console.log('Resolving HubList')
-            return forgeService.hubList.get();
+            return forgeService.hubList.get().$promise;
         }
 
         function resolveProjects(forgeService, $stateParams) {
             var hubId = $stateParams.hubId;
             console.log('Resolving Projects for Hub: ' + hubId)
-            return forgeService.projectList.get({hubId: hubId});
+            return forgeService.projectList.get({hubId: hubId}).$promise;
         }
 
         function resolveItems(forgeService, $stateParams) {
@@ -130,39 +130,8 @@ $(".dropdown-button").dropdown();
             var folderId = $stateParams.folderId;
             console.log('Resolving Items for project: ' + projectId)
             console.log('folderId: ' + projectId)
-            return forgeService.itemList.get({projectId: projectId, folderId: folderId});
+            return forgeService.itemList.get({projectId: projectId, folderId: folderId}).$promise;
         }
-
-        // .state('list', {
-        //     parent: 'index',
-        //     url: '/list',
-        //     // templateUrl: 'list.html',
-        //     // controller: 'ListCtrl'
-        //   })
-        // .state('list.detail', {
-        //     url: '/:id',
-        //     views: {
-        //       'detail@index' : {
-        //         // templateUrl: 'detail.html',
-        //         // controller: 'DetailCtrl'
-        //       },
-        //       'actions@index' : {
-        //         // templateUrl: 'actions.html',
-        //         // controller: 'ActionCtrl'
-        //       },
-        //     },
-        //   })
-        //
-        //
-
-    //   .when('/hubs/:hubId/projects/:projectId/folders',{
-        //       templateUrl:'/static/partials/project.html',
-        //     //   controller: 'projectController'
-        //   })
-
-        //   .when('/login',{templateUrl:'/static/partials/login.html'})
-        //   .when('/upload',{templateUrl:'/static/partials/upload.html'})
-        //   .when('/',{templateUrl:'/static/partials/home.html'})
           //
         //   .otherwise({redirectTo:'/',
         //               templateUrl: '/static/partials/home.html',

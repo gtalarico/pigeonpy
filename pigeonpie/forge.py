@@ -44,21 +44,21 @@ class _ForgeUser(object):
 
     def login(self, code=None, refresh_token=None):
         url = URL_USER_GET_TOKEN
-        self.data = {'client_id': app.config['FORGE_CLIENT_ID'],
-                     'client_secret': app.config['FORGE_CLIENT_SECRET'],
-                     'redirect_uri': app.config['FORGE_CALLBACK'],
-                     'grant_type': 'authorization_code',
-                     'code': code}
+        login_payload = {'client_id': app.config['FORGE_CLIENT_ID'],
+                         'client_secret': app.config['FORGE_CLIENT_SECRET'],
+                         'redirect_uri': app.config['FORGE_CALLBACK'],
+                         'grant_type': 'authorization_code',
+                         'code': code}
 
         if refresh_token:
             # TODO: Save + Use Expiration time instead of trial and error
             app.logger.info('Refreshing Token...')
             url = URL_USER_REFRESH_TOKEN
             # Replaces Code with RefreshToken
-            self.data.pop('code')
-            self.data.update({'refresh_token': refresh_token})
+            login_payload.pop('code')
+            login_payload.update({'refresh_token': refresh_token})
 
-        response = requests.post(url, headers=TOKEN_HEADER, data=self.data)
+        response = requests.post(url, headers=TOKEN_HEADER, data=login_payload)
         if response.status_code == 200:
             app.logger.info('FORGE USER: Authentication Successful.')
             session['access_token'] = response.json()['access_token']
@@ -118,10 +118,10 @@ class _ForgeApp(object):
     class __ForgeApp(object):
 
         def __init__(self):
-            self.data = {'client_id': app.config['FORGE_CLIENT_ID'],
-                         'client_secret': app.config['FORGE_CLIENT_SECRET'],
-                         'grant_type': 'client_credentials',
-                         'scope': SCOPE_FULL}
+            self.auth_payload = {'client_id': app.config['FORGE_CLIENT_ID'],
+                                 'client_secret': app.config['FORGE_CLIENT_SECRET'],
+                                 'grant_type': 'client_credentials',
+                                 'scope': SCOPE_FULL}
 
             self.default_header = {'Content-Type': 'application/json'}
             self.access_token = self.get_new_token()
@@ -148,7 +148,7 @@ class _ForgeApp(object):
 
         def get_new_token(self):
             url = URL_APP_GET_TOKEN
-            response = requests.post(url, headers=TOKEN_HEADER, data=self.data)
+            response = requests.post(url, headers=TOKEN_HEADER, data=self.auth_payload)
             if response.status_code == 200:
                 token_data = response.json()
                 access_token = token_data['access_token']

@@ -6484,7 +6484,7 @@ footer.page-footer {
   transition: all 0.75s ease-in-out;
   opacity: 1;
   bottom: 0px !important;
-  position: absolute;
+  position: fixed;
   width: 100%;
   text-align: center;
   height: 45px;
@@ -6495,7 +6495,7 @@ footer.page-footer {
       opacity: 0; } }
   footer.page-footer p {
     letter-spacing: 1px;
-    font-size: 13px;
+    font-size: 12px;
     vertical-align: middle;
     height: 70%; }
 
