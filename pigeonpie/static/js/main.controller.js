@@ -12,7 +12,7 @@
                     // )
 
                     // Check if Admin, Add to scope > Will load buckets
-                    $scope.user = userService.user
+                    // $scope.user = userService.user
 
                     // $scope.loadHubs = loadHubs
                     // function loadHubs(){
