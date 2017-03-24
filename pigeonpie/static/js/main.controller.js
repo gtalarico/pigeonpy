@@ -3,87 +3,38 @@
     'use strict';
 
     angular.module('PigeonPieApp')
-        .controller('mainController', function($rootScope, $scope, $log, $http, $state, forgeService, userService) {
+        .controller('mainController', function($scope, $timeout, $log, $http, $state, forgeService, userService) {
 
-                    // $rootScope.$on('$stateChangeSuccess',
-                    //   function(event, toState, toParams, fromState, fromParams) {
-                        // if ($state.current.name == 'hubs'){ loadHubs() } // Rebuild State - This should go into Router State Management
-                    //   }
-                    // )
+            $scope.user = userService.user
 
-                    // Check if Admin, Add to scope > Will load buckets
-                    // $scope.user = userService.user
 
-                    // $scope.loadHubs = loadHubs
-                    // function loadHubs(){
-                    //     console.log('Main: loadHubs()')
-                    //     $state.go('hubs', {} );
-                    //     console.log('State Changed')
-                    //     var hubList = forgeService.hubList.get();
-                    //     hubList.$promise.then(function(response){
-                    //         // $scope.hubList = response.data;
-                    //     })
-                    // }
-                    //
-                    //
-                    // $scope.loadProjects = loadProjects
-                    // function loadProjects(hubId){
-                    //     console.log('Main: loadProjects(hubId)')
-                    //     console.log(hubId)
-                    //     var projectList = forgeService.projectList.get({hubId: hubId});
-                    //     projectList.$promise.then(function(response){
-                    //         $scope.projectList = response.data;
-                    //         // $state.go('projects', {hubId: hubId}, { location: true });
-                    //     })
-                    // }
+            $scope.$on('$viewContentLoaded', function(event) {
+              $timeout(function() {
+                      $('.button-collapse.left').sideNav({
+                          menuWidth: 300, // Default is 300
+                          edge: 'left', // Choose the horizontal origin
+                          closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                          draggable: false // Choose whether you can drag to open on touch screens
+                      }
+                  );
+
+                      $('.button-collapse.right').sideNav({
+                          menuWidth: 300, // Default is 300
+                          edge: 'right', // Choose the horizontal origin
+                          closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+                          draggable: true // Choose whether you can drag to open on touch screens
+                      }
+                  );
+
+                  $(".dropdown-button").dropdown();
 
 
 
+              },200);
+            });
 
-                    //
-                    //     if (forgeService.projectList[hubId] != undefined) {
-                    //         $log.log('Projects were already loaded')
-                    //         $scope.projectList = forgeService.projectList
-                    //         $log.log($scope.projectList)
-                    //         }
-                    //     else {
-                    //         $log.log('Getting Projects...')
-                    //         forgeService.getProjectList(hubId).then(
-                    //             function(projectList){
-                    //                 $log.log(projectList)
-                    //                 $scope.projectList = projectList
-                    //                 forgeService.projectList = projectList
-                    //             }
-                    //         )
-                    //     }
-                    //     $location.path('/hubs/' + hubId + '/projects')
-                    //
-                    // }
-                    //
-                    // $scope.loadProject = function(project){
-                    //     console.log('Getting Project')
-                    //     var hubId = project.relationships.hub.data.id
-                    //     var projectId = project.id
-                    //     var rootFolderId = project.relationships.rootFolder.data.id
-                    //
-                    //     if (forgeService.projectItems[projectId] != undefined) {
-                    //         $log.log('Project Itemswere already loaded')
-                    //         $scope.projectItems = forgeService.projectItems[project.id]
-                    //         }
-                    //     else {
-                    //         $log.log('Getting ProjectItems...')
-                    //         forgeService.getProjectItems(hubId, projectId, rootFolderId).then(
-                    //             function(projectItems){
-                    //                 $log.log(projectItems)
-                    //                 $scope.projectItems = projectItems[project.id]
-                    //                 forgeService.projectItems = projectItems
-                    //             }
-                    //         )
-                    //     }
-                    //     $location.path('/hubs/' + hubId + '/projects/' + projectId + '/folders')
-                    // }
+
             }
-
         );
 
 

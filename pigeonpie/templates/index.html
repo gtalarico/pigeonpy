@@ -34,14 +34,13 @@
 
     </head>
 
-    <body ng-app="PigeonPieApp" class="ng-cloak">
+    <body ng-app="PigeonPieApp">
 
 
         {% if session.user %}
         {# include 'nav.html' with context #}
 
-        <!-- ANGULAR VIEW -->
-        <div ui-view><div/>
+        <ui-view></ui-view>
 
         {% else %}
         {% include 'login.html' with context %}

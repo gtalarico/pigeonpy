@@ -16,6 +16,8 @@ $( document ).ready(function() {
             }
           );
 
+$(".dropdown-button").dropdown();
+
 });
 
 // https://github.com/mgonto/restangular
@@ -37,19 +39,51 @@ $( document ).ready(function() {
 
     $stateProvider
         .state('app', {
-            url: '/',
+            // url: '',
+            abstract: true,
             views: {
-              '@' : { templateUrl: '/static/partials/layout.html' },
-                'nav.top@app' : { templateUrl: '/static/partials/nav.top.html',},
+              '@' : {
+                      templateUrl: '/static/partials/layout.html',
+                      controller: 'mainController',
+                        },
                 'nav.side@app' : { templateUrl: '/static/partials/nav.side.html',},
-                'footer@app' : { templateUrl: '/static/partials/footer.html',},
+                // 'nav.top@app' : { templateUrl: '/static/partials/nav.top.html',},
+                // 'footer@app' : { templateUrl: '/static/partials/footer.html',},
             },
           })
-          .state('home', {
-              url: '/',
-              templateUrl:'/static/partials/home.html',
-            //   controller: 'mainController'
+          .state('app.home', {
+              url: '',
+              views: { 'main@app': {
+                          templateUrl:'/static/partials/home.html'
+                      }
+              }
           })
+          .state('app.buckets', {
+              url: '/buckets',
+              controller: 'bucketsController',
+              views: { 'main@app': {
+                          templateUrl:'/static/partials/buckets.html'
+                      }
+              }
+          })
+          .state('app.hubs', {
+              url: '/hubs',
+              views: { 'main@app': {
+                          templateUrl:'/static/partials/hubs.html'
+                      }
+              }
+          })
+        //   .state('hubs', {
+        //     url: '/hubs',
+        //     templateUrl:'/static/partials/hubs.html', // TODO: Fix root scope
+        //     resolve: { hubListResponse : function(forgeService) {
+        //                                   return forgeService.hubList.get();
+        //               }},
+        //     controller: function($scope, hubListResponse) {
+        //         $scope.hubList = hubListResponse.data
+        //         console.log('Hublist set')
+        //     },
+        //   })
         // .state('list', {
         //     parent: 'index',
         //     url: '/list',
@@ -69,29 +103,9 @@ $( document ).ready(function() {
         //       },
         //     },
         //   })
+        //
+        //
 
-        .state('app.buckets', {
-            // parent: 'app',
-            url: 'buckets',
-            controller: 'bucketsController',
-            views: { 'main@app': {
-                        templateUrl:'/static/partials/buckets.html'
-                    }
-            }
-        })
-        //
-        //
-        // .state('hubs', {
-        //   url: '/hubs',
-        //   templateUrl:'/static/partials/hubs.html', // TODO: Fix root scope
-        //   resolve: { hubListResponse : function(forgeService) {
-        //                                 return forgeService.hubList.get();
-        //             }},
-        //   controller: function($scope, hubListResponse) {
-        //       $scope.hubList = hubListResponse.data
-        //       console.log('Hublist set')
-        //   },
-        // })
         //
         // .state('hubs.projects', {
         //   url: '/hubs/:hubId/projects',

@@ -1,8 +1,8 @@
-<div class="row" ng-controller="navController">
+<div class="row">
     <ul id="slide-out" class="side-nav fixed">
       <li ng-if="user.is_admin"><a ui-sref="app.buckets"><i class="material-icons">cloud</i>Buckets</a></li>
 
-      <li><a ui-sref="hubs"><i class="material-icons">device_hub</i>Hubs</a></li>
+      <li><a ui-sref="app.hubs"><i class="material-icons">device_hub</i>Hubs</a></li>
 
       <li ng-if="hubList" ng-repeat="hub in hubList">
         <a ui-sref="hubs.projects({hubId:hub.id})"  class="level-2" href=""><i class="material-icons">folder_open</i>{{ hub.attributes.name }} </a>

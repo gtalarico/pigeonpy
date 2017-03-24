@@ -13,15 +13,16 @@ css_assets = Bundle('components/angular-loading-bar/build/loading-bar.css',
                     filters='cssmin', output='packed/packed.css'
                     )
 
-js_assets = Bundle('components/jquery/dist/jquery.js',
+js_assets = Bundle(
+                   'components/jquery/dist/jquery.js',
                    'components/angular/angular.js',
                    'components/angular-ui-router/release/angular-ui-router.js',
                 #    'components/angular-route/angular-route.js',
                    'components/angular-animate/angular-animate.js',
                    'components/angular-resource/angular-resource.js',
-                   'components/materialize/dist/js/materialize.js',
                    'components/angular-loading-bar/build/loading-bar.js',
-                   'js/main.js',
+                   'components/materialize/dist/js/materialize.js',
+                   'js/app.js',
                    'js/forge.services.js',
                    'js/user.services.js',
                    'js/main.controller.js',
