@@ -9,7 +9,7 @@ from pigeonpie import app, session
 # Config
 HOST = 'https://developer.api.autodesk.com/authentication/v1/'
 SCOPE_FULL = 'data:write data:read bucket:create bucket:read bucket:delete'
-SCOPE_USER = 'data:write data:read'
+SCOPE_USER = 'data:read'
 
 TOKEN_HEADER = {'Content-Type': 'application/x-www-form-urlencoded'}
 URL_USER_GET_TOKEN = HOST + 'gettoken'

@@ -1,7 +1,7 @@
 import json
 import requests
 
-from flask import request, jsonify, redirect, session
+from flask import request, jsonify, redirect, session, make_response
 from flask_restful import Resource, abort
 
 from pigeonpie import app, app_api
@@ -22,19 +22,6 @@ class User(Resource):
         if user:
             return jsonify(user)
         abort(401)
-
-# api/hubs/a.YnVzaW5lc3M6d2V3b3Jr/projects/a.YnVzaW5lc3M6d2V3b3JrIzIwMTcwMjIxNjQzMzc4NzY/folders/urn:adsk.wipprod:fs.folder:co.J8YTUaiMThKOfWuDL1v9Ig/items/itemId
-class DownloadItem(UserResouce):
-    """ This should receive info for a file, and prepare a response + redirect to download """
-    url = 'https://developer.api.autodesk.com/data/v1/projects/{project_id}/folders/{folder_id}/items/{item_id}'
-
-    def get(self, project_id, folder_id, item_id):
-        url = FolderItems.url.format(project_id=project_id, folder_id=folder_id, item_id=item_id)
-        print('requesting... : {}'.format(url))
-        json_data, response = ForgeUser.request('get', url)
-        code = response.status_code
-        return jsonify(json_data) if code == 200 else abort(code)
-
 
 # http://localhost:5000/api/hubs/a.YnVzaW5lc3M6d2V3b3Jr/projects/a.YnVzaW5lc3M6d2V3b3JrIzIwMTcwMjIxNjQzMzc4NzY/folders/urn:adsk.wipprod:fs.folder:co.J8YTUaiMThKOfWuDL1v9Ig
 class FolderItems(UserResouce):
@@ -123,4 +110,3 @@ app_api.add_resource(Bucket, '/api/buckets/<string:bucket_key>')
 app_api.add_resource(ProjectList, '/api/hubs/<string:hub_id>/projects')
 # app_api.add_resource(ProjectFolders, '/api/hubs/<string:hub_id>/projects/<string:project_id>/folders')
 app_api.add_resource(FolderItems, '/api/projects/<string:project_id>/folders/<string:folder_id>/items')
-app_api.add_resource(DownloadItem, '/api/projects/<string:project_id>/folders/<string:folder_id>/items/<string:itemId>/download')

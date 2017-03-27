@@ -14,6 +14,7 @@
         <a href="#" data-activates="mobile-demo" class="right button-collapse right"><i class="material-icons">account_circle</i></a>
 
         <ul id="dropdown-user" class="right dropdown-content">
+          <li><a href="https://accounts.autodesk.com/users/{{user.profile.userName}}/view" target="_blank">Profile</a></li>
           <li><a href="/logout">Logout</a></li>
         </ul>
       </div>
@@ -21,5 +22,6 @@
 </div>
 
 <ul class="side-nav" id="mobile-demo">
+    <li><a href="https://accounts.autodesk.com/users/{{user.profile.userName}}/view" target="_blank"><i class="material-icons">account_circle</i> Profile</a></li>
     <li><a href="/logout"><i class="material-icons">exit_to_app</i> Logout</a></li>
 </ul>

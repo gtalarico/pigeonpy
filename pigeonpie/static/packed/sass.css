@@ -6437,6 +6437,11 @@ button.picker__today:focus, button.picker__clear:focus, button.picker__close:foc
   .picker--time .picker__box {
     margin-bottom: 5em; } }
 
+body {
+  height: auto;
+  width: auto;
+  min-height: 100vh; }
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important; }
 
@@ -6471,10 +6476,21 @@ div#login {
   z-index: 1; }
 
 main {
-  padding-left: 300px; }
+  padding-left: 300px;
+  overflow: hidden;
+  height: 100%; }
   @media (max-width: 991px) {
     main {
       padding-left: 0; } }
+
+#MyViewerDiv {
+  position: absolute;
+  height: 100%;
+  width: 100%; }
+  @media (min-width: 992px) {
+    #MyViewerDiv {
+      width: calc(100% - 300px);
+      height: calc(100% - 65px - 31.5px); } }
 
 footer.page-footer {
   -webkit-transition: all 0.75s ease-in-out;

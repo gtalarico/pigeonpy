@@ -3,7 +3,7 @@ $( document ).ready(function() {
         $('.button-collapse.left').sideNav({
               menuWidth: 300, // Default is 300
               edge: 'left', // Choose the horizontal origin
-              closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+              closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
               draggable: false // Choose whether you can drag to open on touch screens
             }
           );
@@ -74,7 +74,7 @@ $(".dropdown-button").dropdown();
                           templateUrl:'/static/partials/hubs.html',
                           controller: function($rootScope, hubListResponse) {
                                   console.log('Hubs: Adding HubList to rootScope')
-                                  $rootScope.hubList = hubListResponse.data
+                                  $rootScope.hubList = hubListResponse;
                                   console.log('Hubs: hubList: ' + $rootScope.hubList);
                                   console.log('Hubs: projectList: ' + $rootScope.projectList);
                                   },
@@ -88,8 +88,8 @@ $(".dropdown-button").dropdown();
                           templateUrl:'/static/partials/projects.html',
                           controller: function($rootScope, hubListResponse, projectListResponse) {
                               console.log('Projects: Adding HubList + ProjectList to rootScope')
-                              $rootScope.hubList = hubListResponse.data;
-                              $rootScope.projectList = projectListResponse.data;
+                              $rootScope.hubList = hubListResponse;
+                              $rootScope.projectList = projectListResponse;
                               console.log('Projects: hubList: ' + $rootScope.hubList);
                               console.log('Projects: projectList: ' + $rootScope.projectList);
                           },
@@ -103,13 +103,22 @@ $(".dropdown-button").dropdown();
                           templateUrl:'/static/partials/items.html',
                           controller: function($rootScope, hubListResponse, projectListResponse, itemListResponse) {
                               console.log('Items: Adding itemList')
-                              $rootScope.hubList = hubListResponse.data;
-                              $rootScope.projectList = projectListResponse.data;
-                              $rootScope.itemList = itemListResponse.data;
+                              $rootScope.hubList = hubListResponse;
+                              $rootScope.projectList = projectListResponse;
+                              $rootScope.itemList = itemListResponse;
                               console.log('Items: ItemsList: ' + $rootScope.itemList);
                               console.log('Items: hubList: ' + $rootScope.hubList);
                               console.log('Items: projectList: ' + $rootScope.projectList);
                           },
+                     }
+              }
+          })
+          .state('app.view', {
+              url: '/:urn/view',
+              resolve: { },
+              views: { 'main@app': {
+                          templateUrl:'/static/partials/viewer.html',
+                          controller: 'viewerController'
                      }
               }
           })

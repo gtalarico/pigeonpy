@@ -1,17 +1,10 @@
-<div>
-  <header>
-      <div ui-view="nav.top"></div>
-  </header>
+<header>
+  <div ui-view="nav.top"></div>
+</header>
 
-  <section>
-    <div ui-view="nav.side"></div>
-  </section>
+<section ui-view="nav.side"></section>
+<main ui-view="main"></main>
 
-  <section>
-    <main ui-view="main"></main>
-  </section>
-
-  <footer class="page-footer">
-      <p class="teal-text text-lighten-4">Flask + Angular Forge API Interface | <a class="white-text" href="http://www.gtalarico.com">Gui Talarico</a></p>
-  </footer>
-</div>
+<footer class="page-footer">
+  <p class="teal-text text-lighten-4">Flask + Angular Forge API Interface | <a class="white-text" href="http://www.gtalarico.com">Gui Talarico</a></p>
+</footer>

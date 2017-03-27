@@ -22,7 +22,7 @@
 
             function isLoggedIn(){
                 // Faster way of checking if loged in.
-                return Boolean(window.flaskSession.user)
+                return Boolean($window.flaskSession.user)
             }
 
             return { getUser: getUser,

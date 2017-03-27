@@ -6,7 +6,7 @@
 
     <div class="container">
         <div class="row">
-          <div class="col s12 m12 l12" ng-repeat="item in itemList">
+          <div class="col s12 m12 l12" ng-repeat="item in itemList.data">
 
             <div class="card hoverable grey lighten-4">
                 <div class="card-content">
@@ -17,9 +17,7 @@
                     <p class="light">ID: {{ item.id }}</p>
                 </div>
                 <div class="card-action">
-                    <a href="/api/projects/item/folders/<string:folder_id>/items/<string:itemId>/download">Download</a>
-                    <a href="#">View</a>
-                    <!-- <a href="#">{{ itemList }}</a> -->
+                    <a ui-sref="app.view({urn: itemList.included[$index].relationships.derivatives.data.id})">View</a>
                 </div>
             </div>
 

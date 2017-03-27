@@ -6,11 +6,13 @@
 @import '_variables-override.scss';
 @import '../components/materialize/sass/materialize.scss';
 
-// body {
-//   display: flex;
-//   min-height: 100vh;
+body {
+    height: auto;
+    width: auto;
+    min-height: 100vh;
+    // display: flex;
 //   flex-direction: column;
-// }
+}
 
 $sidebar-width: 300px;
 
@@ -49,9 +51,24 @@ div#login {
 }
 
 main {
+    // margin-left: $sidebar-width;
     padding-left: $sidebar-width;
+    // margin-top: $navbar-height;
+    // margin-bottom: $footer-height;
+    overflow: hidden;
+    height: 100%;
     @include mobile {
         padding-left: 0;
+    }
+}
+
+#MyViewerDiv {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    @include desktop {
+        width: calc(100% - 300px);
+        height: calc(100% - 65px - 31.5px);
     }
 }
 

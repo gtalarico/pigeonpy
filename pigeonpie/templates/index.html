@@ -29,8 +29,16 @@
 
         <script>
         // Stores Flask Session data in var flaskSession so it can be accessed by $window.flaskSession
-        var flaskSession = { user: {{session.get('user')|tojson}} };
+        var flaskSession = { user: {{session.get('user')|tojson}}, clientId: "{{config['FORGE_CLIENT_ID']}}" };
         </script>
+
+        <!-- START JS WEBASSETS -->
+        {% assets "js_assets" %}
+        <script src="{{ ASSET_URL }}"></script>
+        {% endassets %}
+        <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/three.min.js"></script>
+        <script src="https://developer.api.autodesk.com/viewingservice/v1/viewers/viewer3D.min.js"></script>
+        <!-- END JS WEBASSETS -->
 
     </head>
 
@@ -46,11 +54,7 @@
 
 
 
-        <!-- START JS WEBASSETS -->
-        {% assets "js_assets" %}
-        <script src="{{ ASSET_URL }}"></script>
-        {% endassets %}
-        <!-- END JS WEBASSETS -->
+
 
         {# Google Analytics Script #}
         {# include 'components/__analytics.html' #}
