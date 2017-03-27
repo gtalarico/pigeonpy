@@ -1,0 +1,18 @@
+Misc:
+☐ Rename pigeonpie > pigeonpy; files + heroku
+
+Features:
+☐ Create Model Derivative
+☐ Viewer Layer/Stats
+
+Backend:
+☐ AccessToken Getter for viewer refresh
+
+Front-end:
+☐ Add Alert System!
+☐ Fix Spinner loader
+☐ Fix Main Scss/Viewer/Sidenav
+
+Cleanup:
+☐ Main scss
+☐ Consolidade/abstract app.js resolve functions

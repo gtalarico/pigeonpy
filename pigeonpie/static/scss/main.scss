@@ -16,10 +16,6 @@ body {
 
 $sidebar-width: 300px;
 
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-  display: none !important;
-}
-
 div#login {
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0b9f9c+0,39ada9+55,3d9992+100 */
     background: #0b9f9c; /* Old browsers */
@@ -145,14 +141,6 @@ span.card-title {
     // font-weight: 600 !important;
 }
 
-.dropdown-content.active {
-    // margin-top: $navbar-height;
-}
-
-.breadcrumb {
-    padding-left: 20px;
-    font-size: 12px;
-}
 
 #loading-bar-spinner .spinner-icon {
   // display: none;
@@ -179,4 +167,8 @@ span.card-title {
 .ng-hide-add {
   transition: all 0s ease;
   opacity: 0;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
 }
