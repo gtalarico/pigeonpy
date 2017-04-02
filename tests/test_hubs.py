@@ -1,17 +1,17 @@
 import json
 import pytest
-import pigeonpie
+import pigeonpy
 
 
 @pytest.fixture(scope="module")
 def client():
-    pigeonpie.app.config['TESTING'] = True
-    return pigeonpie.app.test_client()
+    pigeonpy.app.config['TESTING'] = True
+    return pigeonpy.app.test_client()
 
 
 @pytest.fixture(scope="module")
 def ForgeUser():
-    from pigeonpie.forge import ForgeUser as ForgeUser_
+    from pigeonpy.forge import ForgeUser as ForgeUser_
     return ForgeUser_
 
 
@@ -25,7 +25,7 @@ def token():
 
 @pytest.fixture(scope="module")
 def request_context():
-    return pigeonpie.app.test_request_context('')
+    return pigeonpy.app.test_request_context('')
 
 
 def test_hubs_not_authorized(client):

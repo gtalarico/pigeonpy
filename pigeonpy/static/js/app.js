@@ -23,7 +23,7 @@ $(".dropdown-button").dropdown();
 (function () {
 
   'use strict';
-  angular.module('PigeonPieApp',['ui.router', 'ngAnimate', 'ngResource', 'angular-loading-bar'])
+  angular.module('PigeonPyApp',['ui.router', 'ngAnimate', 'ngResource', 'angular-loading-bar'])
   .run(function($rootScope){
       $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error){
           console.log(error);

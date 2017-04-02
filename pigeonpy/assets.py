@@ -1,6 +1,6 @@
 import os
 from flask_assets import Environment, Bundle
-from pigeonpie import app
+from pigeonpy import app
 
 join = os.path.join
 COMPONENTS = 'components'

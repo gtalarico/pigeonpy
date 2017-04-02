@@ -1,8 +1,8 @@
 from flask import render_template, redirect, request, url_for
 from werkzeug.urls import url_encode
 
-from pigeonpie import app
-from pigeonpie.forge import ForgeUser, SCOPE_USER
+from pigeonpy import app
+from pigeonpy.forge import ForgeUser, SCOPE_USER
 
 @app.route('/')
 def index():

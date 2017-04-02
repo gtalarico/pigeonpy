@@ -1,3 +1,3 @@
-from pigeonpie import app
+from pigeonpy import app
 
 app.run(debug=True)

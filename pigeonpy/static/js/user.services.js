@@ -1,5 +1,5 @@
 (function () {
-    angular.module('PigeonPieApp')
+    angular.module('PigeonPyApp')
         .factory('userService', function userService($window, $state, $resource) {
 
             function getUser(){

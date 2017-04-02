@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('PigeonPieApp')
+    angular.module('PigeonPyApp')
         .controller('mainController', function($scope, $timeout, $log, $http, $state, forgeService, userService) {
 
             if (!userService.isLoggedIn()) {

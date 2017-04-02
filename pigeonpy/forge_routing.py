@@ -4,9 +4,9 @@ import requests
 from flask import request, jsonify, redirect, session, make_response
 from flask_restful import Resource, abort
 
-from pigeonpie import app, app_api
-from pigeonpie.forge import ForgeUser, ForgeApp
-from pigeonpie.security import UserResouce, AdminResource
+from pigeonpy import app, app_api
+from pigeonpy.forge import ForgeUser, ForgeApp
+from pigeonpy.security import UserResouce, AdminResource
 
 
 def get_resource_data(resource, method='get', *args, **kwargs):
@@ -78,7 +78,7 @@ class BucketList(AdminResource):
         return jsonify(json_data) if code == 200 else abort(code)
 
 
-# http://localhost:5000/api/buckets/pigeonpie-tests
+# http://localhost:5000/api/buckets/pigeonpy-tests
 class Bucket(AdminResource):
     url = 'https://developer.api.autodesk.com/oss/v2/buckets'
 

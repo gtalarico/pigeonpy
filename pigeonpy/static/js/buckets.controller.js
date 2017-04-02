@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('PigeonPieApp')
+    angular.module('PigeonPyApp')
         .controller('bucketsController', ['$scope', '$log', '$http', '$timeout',
             function($scope, $log, $http, $timeout) {
 

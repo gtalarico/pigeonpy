@@ -1,5 +1,5 @@
 import os
-from pigeonpie import app
+from pigeonpy import app
 
 class Config(object):
     MODE = 'Config'
@@ -28,4 +28,4 @@ class Production(Config):
     MODE = 'Production'
 
 flask_config = os.environ['FLASK_CONFIG']
-app.config.from_object('pigeonpie.config.{}'.format(flask_config))
+app.config.from_object('pigeonpy.config.{}'.format(flask_config))

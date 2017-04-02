@@ -2,7 +2,7 @@
 
     'use strict';
 
-    angular.module('PigeonPieApp')
+    angular.module('PigeonPyApp')
         .controller('viewerController', function($scope, $log, $http, $timeout, $window, $stateParams, forgeService, userService) {
 
                     var urn = $stateParams.urn;

@@ -1,47 +1,47 @@
 import json
 import pytest
-import pigeonpie
+import pigeonpy
 
 
 @pytest.fixture(scope="module")
 def client():
-    pigeonpie.app.config['TESTING'] = True
-    return pigeonpie.app.test_client()
+    pigeonpy.app.config['TESTING'] = True
+    return pigeonpy.app.test_client()
 
 
 @pytest.fixture(scope="module")
 def ForgeApp():
-    from pigeonpie.forge import ForgeApp as ForgeApp_
+    from pigeonpy.forge import ForgeApp as ForgeApp_
     return ForgeApp_
 
 
 @pytest.fixture(scope="module")
 def request_context():
-    return pigeonpie.app.test_request_context('')
+    return pigeonpy.app.test_request_context('')
 
 
 def test_bucket_access(ForgeApp, client):
-    response = client.get('/api/buckets/pigeonpie-tests')
+    response = client.get('/api/buckets/pigeonpy-tests')
     assert response.status_code == 200
 
 #
 # def test_bucket_get(client):
 #     """'createdDate': 1489311808559,
-#     'bucketKey': 'pigeonpie-tests',
+#     'bucketKey': 'pigeonpy-tests',
 #     'bucketOwner': 'XXX',
 #     'policyKey': 'transient',
 #     'permissions': [
 #         {'authId': 'Z350QXyqRAguS5A3EXqAlIpoNSqSHMYi', 'access': 'full'}]}
 #     """
-#     response = client.get('/api/buckets/pigeonpie-tests')
+#     response = client.get('/api/buckets/pigeonpy-tests')
 #     data = json.loads(response.get_data(as_text=True))
-#     assert data['bucketKey'] == 'pigeonpie-tests'
+#     assert data['bucketKey'] == 'pigeonpy-tests'
 #     assert 'permissions' in data
 #
 #
 # def test_bucket_post_exists(client):
 #     """ {'reason': 'Bucket already exists'} """
-#     response = client.post('/api/buckets/pigeonpie-tests')
+#     response = client.post('/api/buckets/pigeonpy-tests')
 #     assert response.status_code == 409
 #
 #     data = json.loads(response.get_data(as_text=True))
@@ -57,7 +57,7 @@ def test_bucket_access(ForgeApp, client):
 #
 #
 # def test_bucket_create_delete(client):
-#     TEMP_BUCKET = '/api/buckets/pigeonpie-tests-temp'
+#     TEMP_BUCKET = '/api/buckets/pigeonpy-tests-temp'
 #     # Create
 #     response = client.post(TEMP_BUCKET)
 #     assert response.status_code == 200
@@ -65,7 +65,7 @@ def test_bucket_access(ForgeApp, client):
 #     response = client.get(TEMP_BUCKET)
 #     assert response.status_code == 200
 #     data = json.loads(response.get_data(as_text=True))
-#     assert data.get('bucketKey') == 'pigeonpie-tests-temp'
+#     assert data.get('bucketKey') == 'pigeonpy-tests-temp'
 #     # Delete
 #     response = client.delete(TEMP_BUCKET)
 #     assert response.status_code == 200

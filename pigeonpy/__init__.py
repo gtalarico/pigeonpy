@@ -6,9 +6,9 @@ from flask_restful import Api
 app = Flask(__name__)
 app_api = Api(app)
 
-from pigeonpie import config
-from pigeonpie import assets
-from pigeonpie import views, forge_routing
+from pigeonpy import config
+from pigeonpy import assets
+from pigeonpy import views, forge_routing
 
 app.logger.info('>>> {}'.format(app.config['MODE']))
 

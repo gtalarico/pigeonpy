@@ -1,5 +1,5 @@
 {
-  "name": "pigeonpie",
+  "name": "pigeonpy",
   "authors": [
     "Gui Talarico"
   ],
@@ -12,7 +12,7 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "pigeonpie/static/components",
+    "pigeonpy/static/components",
     "test",
     "tests"
   ],

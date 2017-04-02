@@ -3,8 +3,8 @@ from functools import wraps
 from flask import request, redirect, url_for
 from flask_restful import Resource, abort
 
-from pigeonpie import app, session
-from pigeonpie.forge import ForgeUser
+from pigeonpy import app, session
+from pigeonpy.forge import ForgeUser
 
 #############################
 # AUTHENTICATION DECORATORS #

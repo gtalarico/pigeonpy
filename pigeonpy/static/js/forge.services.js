@@ -2,7 +2,7 @@
 
 (function () {
 
-angular.module('PigeonPieApp')
+angular.module('PigeonPyApp')
 
     .factory('forgeService',
     function forgeService($http, $log, $q, $window, $resource) {
@@ -180,14 +180,14 @@ angular.module('PigeonPieApp')
 //       };
 //
 //     }
-//     angular.module('PigeonPieApp').factory('forgeService', forgeService)
+//     angular.module('PigeonPyApp').factory('forgeService', forgeService)
 //
 // })();
 
 
 // (function () {
 //
-// angular.module('PigeonPieApp').service('forgeService',
+// angular.module('PigeonPyApp').service('forgeService',
 //     function forgeService($http, $log, $q, $window) {
 //
 //         this.hubList = []
