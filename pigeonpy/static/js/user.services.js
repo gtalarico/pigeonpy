@@ -25,9 +25,18 @@
                 return Boolean($window.flaskSession.user)
             }
 
+            function getClientId() {
+                return $window.flaskSession.clientId
+            }
+
+            function getAccessToken(){
+                return $resource('/api/user/token')
+            }
+
             return { getUser: getUser,
                      isLoggedIn: isLoggedIn,
-                     //  profile: $window.flaskSession.user.profile
+                     getClientId:getClientId,
+                     getAccessToken: getAccessToken
                     }
         });
 

@@ -27,16 +27,10 @@ angular.module('PigeonPyApp')
                             )
         }
 
-        function getClientId() {
-            return $window.flaskSession.clientId
-        }
-
-
         return {
             hubList: hubList(),
             projectList: projectList(),
             itemList: itemList(),
-            clientId: getClientId(),
         }
 
 

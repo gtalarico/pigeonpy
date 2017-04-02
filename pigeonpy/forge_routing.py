@@ -16,12 +16,20 @@ def get_resource_data(resource, method='get', *args, **kwargs):
     return data
 
 
-class User(Resource):
+class User(UserResouce):
     def get(self):
         user = session.get('user')
         if user:
             return jsonify(user)
         abort(401)
+
+class Token(Resource):
+    def get(self):
+        if ForgeUser.is_authenticated:
+            token = session.get('access_token')
+            return jsonify({'token': token})
+        else:
+            abort(401)
 
 # http://localhost:5000/api/hubs/a.YnVzaW5lc3M6d2V3b3Jr/projects/a.YnVzaW5lc3M6d2V3b3JrIzIwMTcwMjIxNjQzMzc4NzY/folders/urn:adsk.wipprod:fs.folder:co.J8YTUaiMThKOfWuDL1v9Ig
 class FolderItems(UserResouce):
@@ -104,6 +112,7 @@ class Bucket(AdminResource):
 
 
 app_api.add_resource(User, '/api/user')
+app_api.add_resource(Token, '/api/user/token')
 app_api.add_resource(HubList, '/api/hubs')
 app_api.add_resource(BucketList, '/api/buckets')
 app_api.add_resource(Bucket, '/api/buckets/<string:bucket_key>')
