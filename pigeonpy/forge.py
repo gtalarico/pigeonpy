@@ -82,7 +82,7 @@ class _ForgeUser(object):
 
     def request(self, method, *args, **kwargs):
         """ Inject Token and default header """
-        if datetime.now() > session['expiration']:
+        if session.get('expiration') and datetime.now() > session.get('expiration'):
             self.login(refresh_token=True)
 
         access_token = session.get('access_token')
