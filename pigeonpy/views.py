@@ -8,8 +8,13 @@ from pigeonpy.forge import ForgeUser, SCOPE_USER
 def index():
     return render_template('index.html')
 
+
 @app.route('/user/login')
 def login():
+    """ Login End Point. Authentication button points here.
+    A `redirect` param can be used to define the redirect after login.
+    http://www.pigeonpy.com/login?redirect=#!/buckets
+    """
     redirect_url = request.args.get('redirect', '/')
     params = {'client_id': app.config['FORGE_CLIENT_ID'],
               'redirect_uri': app.config['FORGE_CALLBACK'],
@@ -20,7 +25,7 @@ def login():
     url = 'https://developer.api.autodesk.com/authentication/v1/authorize?{}'.format(url_encode(params))
     return redirect(url, code=303)
 
-@app.route('/logout')
+@app.route('/user/logout')
 def logout():
     """ Authentication endpoint """
     ForgeUser.logout()
