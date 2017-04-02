@@ -73,10 +73,7 @@ $(".dropdown-button").dropdown();
               views: { 'main@app': {
                           templateUrl:'/static/partials/hubs.html',
                           controller: function($rootScope, hubListResponse) {
-                                  console.log('Hubs: Adding HubList to rootScope')
-                                  $rootScope.hubList = hubListResponse;
-                                  console.log('Hubs: hubList: ' + $rootScope.hubList);
-                                  console.log('Hubs: projectList: ' + $rootScope.projectList);
+                                $rootScope.hubList = hubListResponse;
                                   },
                       }
               }
@@ -87,11 +84,8 @@ $(".dropdown-button").dropdown();
               views: { 'main@app': {
                           templateUrl:'/static/partials/projects.html',
                           controller: function($rootScope, hubListResponse, projectListResponse) {
-                              console.log('Projects: Adding HubList + ProjectList to rootScope')
                               $rootScope.hubList = hubListResponse;
                               $rootScope.projectList = projectListResponse;
-                              console.log('Projects: hubList: ' + $rootScope.hubList);
-                              console.log('Projects: projectList: ' + $rootScope.projectList);
                           },
                      }
               }
@@ -102,13 +96,9 @@ $(".dropdown-button").dropdown();
               views: { 'main@app': {
                           templateUrl:'/static/partials/items.html',
                           controller: function($rootScope, hubListResponse, projectListResponse, itemListResponse) {
-                              console.log('Items: Adding itemList')
                               $rootScope.hubList = hubListResponse;
                               $rootScope.projectList = projectListResponse;
                               $rootScope.itemList = itemListResponse;
-                              console.log('Items: ItemsList: ' + $rootScope.itemList);
-                              console.log('Items: hubList: ' + $rootScope.hubList);
-                              console.log('Items: projectList: ' + $rootScope.projectList);
                           },
                      }
               }

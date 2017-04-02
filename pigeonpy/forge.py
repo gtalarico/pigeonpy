@@ -51,25 +51,23 @@ class _ForgeUser(object):
                          'code': code}
 
         if refresh_token:
-            # TODO: Save + Use Expiration time instead of trial and error
-            app.logger.info('Refreshing Token...')
+            app.logger.info('Token is Expired. Refreshing Token...')
             url = URL_USER_REFRESH_TOKEN
-            # Replaces Code with RefreshToken
             login_payload.pop('code')
-            login_payload.update({'refresh_token': refresh_token})
+            login_payload.update({'refresh_token': session.get('refresh_token')})
 
         response = requests.post(url, headers=TOKEN_HEADER, data=login_payload)
         if response.status_code == 200:
             app.logger.info('FORGE USER: Authentication Successful.')
             session['access_token'] = response.json()['access_token']
             session['refresh_token'] = response.json()['refresh_token']
+            session['expiration'] = process_expires_in(response.json()['expires_in'])
             session['user'] = {}
             session['user']['profile'] = self.get_user_profile()
             if session['user']['profile']['emailId'] == app.config['FORGE_ADMIN']:
-                is_admin = True
+                session['user']['is_admin'] = True
             else:
-                is_admin = False
-            session['user']['is_admin'] = is_admin
+                session['user']['is_admin'] = False
             return True
 
         else:
@@ -84,6 +82,9 @@ class _ForgeUser(object):
 
     def request(self, method, *args, **kwargs):
         """ Inject Token and default header """
+        if datetime.now() > session['expiration']:
+            self.login(refresh_token=True)
+
         access_token = session.get('access_token')
         default_headers = {'Authorization': 'Bearer {}'.format(access_token)}
         if method != 'get':
@@ -92,14 +93,7 @@ class _ForgeUser(object):
         requests_session.headers.update(default_headers)
         selected_method = getattr(requests_session, method)
 
-        attempts = 0
-        while attempts <= 1:
-            response = selected_method(*args, **kwargs)
-            if response.status_code == 401:
-                app.logger.info('Refreshing token...')
-                self.login(refresh_token=session.get('refresh_token'))
-            attempts += 1
-
+        response = selected_method(*args, **kwargs)
         return process_response(response)
 
     def get_user_profile(self):
@@ -137,13 +131,6 @@ class _ForgeApp(object):
             self.session.headers.update(self.default_header)
             selected_method = getattr(self.session, method)
             response = selected_method(*args, **kwargs)
-            attempts = 0
-            while attempts <= 1:
-                if response == 401:
-                    self.access_token = None
-                    self.get_new_token()
-                attempts += 1
-
             return process_response(response)
 
         def get_new_token(self):

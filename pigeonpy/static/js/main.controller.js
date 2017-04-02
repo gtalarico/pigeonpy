@@ -11,6 +11,7 @@
 
             $scope.user = userService.getUser()
 
+            // Delay for registering materialize handlers
             $scope.$on('$viewContentLoaded', function(event) {
               $timeout(function() {
                       $('.button-collapse.left').sideNav({
