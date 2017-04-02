@@ -14,6 +14,9 @@
             // Delay for registering materialize handlers
             $scope.$on('$viewContentLoaded', function(event) {
               $timeout(function() {
+
+                      $('.collapsible').collapsible();
+
                       $('.button-collapse.left').sideNav({
                           menuWidth: 300, // Default is 300
                           edge: 'left', // Choose the horizontal origin

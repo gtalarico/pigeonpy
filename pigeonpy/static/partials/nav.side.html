@@ -1,8 +1,54 @@
-<!-- <div class="row"> -->
-    <ul id="slide-out" class="side-nav fixed">
-      <li ng-if="user.is_admin"><a ui-sref="app.buckets"><i class="material-icons">cloud</i>Buckets</a></li>
+<div class="floating-panel" id="floating-side-nav">
+    <ul class="collapsible" data-collapsible="accordion">
 
-      <li><a ui-sref="app.hubs"><i class="material-icons">device_hub</i>Hubs</a></li>
+      <li ng-if="user.is_admin" ui-sref="app.buckets">
+          <!-- BUCKETS HEADER -->
+          <div class="collapsible-header"><i class="material-icons">cloud</i>
+              Buckets
+          </div>
+          <!-- BUCKETS BODY -->
+          <div class="collapsible-body"><span>Admin Only: Manage App Buckets</span></div>
+       </li>
+
+      <li>
+          <!-- HUBS HEADER -->
+          <div class="collapsible-header" ng-class="{active: hubList}" ui-sref="app.hubs">
+              <i class="material-icons">device_hubs</i>
+              Hubs
+          </div>
+          <!-- HUBS BODY -->
+          <div class="collapsible-body nested">
+              <div class="progress" ng-hide="hubList"><div class="indeterminate"></div></div>
+              <ul class="collapsible" data-collapsible="accordion">
+
+                  <li ng-repeat="hub in hubList.data" ng-if="hubList">
+                      <div class="collapsible-header" ui-sref="app.hubs.projects({hubId:hub.id})">
+                          <i class="material-icons">folder_open</i>{{ hub.attributes.name }}
+                      </div>
+                      <div class="collapsible-body nested">
+                          <div class="progress" ng-hide="projectList"><div class="indeterminate"></div></div>
+                          <ul class="collapsible" data-collapsible="accordion">
+                              <li ng-repeat="project in projectList.data" ng-if="projectList">
+                                  <div class="collapsible-header" ui-sref="app.hubs.projects.items({projectId: project.id, folderId: project.relationships.rootFolder.data.id})">
+                                      <i class="material-icons">business</i>{{ project.attributes.name }}
+                                  </div>
+                                  <!-- <div class="collapsible-body nested"></div> -->
+                              </li>
+                          </ul>
+                      </div>
+                  </li>
+
+              </ul>
+          </div>
+
+          <!-- ui-sref="app.buckets" -->
+       </li>
+
+    </ul>
+</div>
+
+
+      <!-- <li><a ui-sref="app.hubs"><i class="material-icons">device_hub</i>Hubs</a></li>
 
       <li ng-if="hubList" ng-repeat="hub in hubList.data">
         <a ui-sref="app.hubs.projects({hubId:hub.id})"  class="level-2" href=""><i class="material-icons">folder_open</i>{{ hub.attributes.name }} </a>
@@ -16,5 +62,5 @@
         </ul>
       <li/>
 
-    </ul>
+    </ul> -->
 <!-- </div> -->

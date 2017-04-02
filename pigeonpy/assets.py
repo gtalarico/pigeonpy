@@ -22,7 +22,9 @@ js_assets = Bundle(
                    'components/angular-resource/angular-resource.js',
                    'components/angular-loading-bar/build/loading-bar.js',
                    'components/materialize/dist/js/materialize.js',
-                #    'components/three.js/build/three.js',
+                   'components/jquery-ui/jquery-ui.js',
+                   'components/jquery.fancytree/dist/jquery.fancytree-all.js',
+                #    'components/three.js/build/three.js', # CDN
                    'js/app.js',
                    'js/forge.services.js',
                    'js/user.services.js',

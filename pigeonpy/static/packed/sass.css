@@ -6462,6 +6462,35 @@ div#login {
 .btn, .btn-large {
   border-radius: 1px; }
 
+#floating-side-nav {
+  z-index: 999;
+  position: absolute;
+  left: 20px;
+  top: 85px;
+  width: 20%;
+  font-size: 12px; }
+  #floating-side-nav .progress {
+    margin-top: 0;
+    margin-bottom: 0; }
+
+.collapsible-header.active {
+  color: #f8981d; }
+
+.collapsible-body.nested {
+  padding: 0;
+  border-bottom: none; }
+  .collapsible-body.nested i {
+    margin-left: 10px; }
+  .collapsible-body.nested .collapsible-body.nested i {
+    margin-left: 20px; }
+  .collapsible-body.nested .collapsible-body.nested .collapsible-body.nested i {
+    margin-left: 30px; }
+
+ul.collapsible ul.collapsible {
+  margin: 0;
+  border: 0;
+  box-shadow: none; }
+
 .side-nav.fixed {
   background-color: #f8f8f9;
   min-height: 100vh;
