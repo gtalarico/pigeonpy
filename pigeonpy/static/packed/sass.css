@@ -6467,11 +6467,23 @@ div#login {
   position: absolute;
   left: 20px;
   top: 85px;
-  width: 20%;
+  width: 300px;
   font-size: 12px; }
   #floating-side-nav .progress {
     margin-top: 0;
     margin-bottom: 0; }
+  @media (max-width: 991px) {
+    #floating-side-nav {
+      margin: auto;
+      left: 20px;
+      right: 20px;
+      width: auto; } }
+  @media (min-width: 992px) {
+    #floating-side-nav li:first-child {
+      display: none; } }
+  @media (max-width: 991px) {
+    #floating-side-nav li:not(:first-child) {
+      display: none; } }
 
 .collapsible-header.active {
   color: #f8981d; }
@@ -6502,21 +6514,21 @@ ul.collapsible ul.collapsible {
   z-index: 1; }
 
 main {
-  padding-left: 300px;
   overflow: hidden;
   height: 100%; }
+  @media (min-width: 992px) {
+    main .content {
+      padding-left: 300px; } }
   @media (max-width: 991px) {
-    main {
-      padding-left: 0; } }
+    main .content {
+      padding-left: 0;
+      padding-top: 100px; } }
 
 #MyViewerDiv {
   position: absolute;
   height: 100%;
-  width: 100%; }
-  @media (min-width: 992px) {
-    #MyViewerDiv {
-      width: calc(100% - 300px);
-      height: calc(100% - 65px - 31.5px); } }
+  width: 100%;
+  height: calc(100% - 65px - 31.5px); }
 
 footer.page-footer {
   -webkit-transition: all 0.75s ease-in-out;

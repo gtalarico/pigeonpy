@@ -40,12 +40,31 @@ div#login {
     position: absolute;
     left: 20px;
     top: 85px;
-    width: 20%;
+    width: $sidebar-width;
     font-size: 12px;
 
     .progress{
         margin-top: 0;
         margin-bottom: 0;
+    }
+
+    @include mobile {
+        margin: auto;
+        left: 20px;
+        right: 20px;
+        width: auto;
+
+    }
+
+    li:first-child {
+        @include desktop{
+            display:none;
+        }
+    }
+    li:not(:first-child){
+        @include mobile {
+            display:none;
+        }
     }
  }
 
@@ -87,14 +106,17 @@ ul.collapsible ul.collapsible {
 }
 
 main {
-    // margin-left: $sidebar-width;
-    padding-left: $sidebar-width;
-    // margin-top: $navbar-height;
-    // margin-bottom: $footer-height;
     overflow: hidden;
     height: 100%;
-    @include mobile {
-        padding-left: 0;
+    .content{
+        @include desktop {
+            padding-left: $sidebar-width;
+
+        }
+        @include mobile {
+            padding-left: 0;
+            padding-top: 100px;
+        }
     }
 }
 
@@ -102,10 +124,10 @@ main {
     position: absolute;
     height: 100%;
     width: 100%;
-    @include desktop {
-        width: calc(100% - 300px);
-        height: calc(100% - 65px - 31.5px);
-    }
+    height: calc(100% - 65px - 31.5px);
+    // @include desktop {
+        // width: calc(100% - 300px);
+    // }
 }
 
 footer.page-footer {
