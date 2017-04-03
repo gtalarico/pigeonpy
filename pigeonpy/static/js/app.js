@@ -61,7 +61,6 @@ $(".dropdown-button").dropdown();
           })
           .state('app.buckets', {
               url: '/buckets',
-              controller: 'bucketsController',
               views: { 'main@app': {
                           templateUrl:'/static/partials/buckets.html'
                       }
