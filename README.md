@@ -26,6 +26,20 @@ The Demo is still alive on [www.pigeonpy.com](http://www.pigeonpy.com)
 * Model Webviewer user to work but stopped working
 
 
+If you want to run this, you will need the following enviroment variables set:
+
+```
+set FLASK_APP=pigeonpy
+set FLASK_CONFIG=Development
+set SECRET_KEY=SomeSuperSecretKey
+set ASSETS_DEBUG=0  # Optional
+
+set FORGE_CLIENT_ID={YourForgeClientId}
+set FORGE_CLIENT_SECRET={YourForgeClientSecret}
+set FORGE_CALLBACK={http://localhost:5000/api/callback} # For Local Development
+set FORGE_ADMIN={EmailForUserToGetBucketManagementAccess}
+
+
 Gui Talarico
 
 MIT License
