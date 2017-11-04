@@ -38,8 +38,8 @@ set FORGE_CLIENT_ID={YourForgeClientId}
 set FORGE_CLIENT_SECRET={YourForgeClientSecret}
 set FORGE_CALLBACK={http://localhost:5000/api/callback} # For Local Development
 set FORGE_ADMIN={EmailForUserToGetBucketManagementAccess}
-
-
-Gui Talarico
+```
 
 MIT License
+
+Gui Talarico
