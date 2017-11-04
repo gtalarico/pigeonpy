@@ -1,4 +1,7 @@
-# PigeonPy 
+![PigeonPy Logo](https://github.com/gtalarico/pigeonpy/blob/master/pigeonpy/static/img/src/logo_logo.png)
+> Abandoned
+
+
 
 I started this in mid 2017 as a way to learn how the Forge API worked, and also to try to learn Angular.
 
@@ -11,5 +14,18 @@ to handle (Forge) Oauth for both Applicationa and USer.
 
 The Demo is still alive on [www.pigeonpy.com](http://www.pigeonpy.com)
 
+### What Works
+* Forge Application Oauth
+* Forge User Oauth
+* Forge Bucket Management
+* Forge User Profile Info
+* Forge Data Mgt Api Access to Hub, Folder, and Items
+
+### What Doesn't Work
+* Front End Angular Application is messy and unfisnished
+* Model Webviewer user to work but stopped working
+
+
 Gui Talarico
+
 MIT License
